@@ -3,26 +3,6 @@
 @tailwind utilities;
 
 
-/* A deep, dark blue that provides a comfortable viewing experience in low-light conditions. */
-.main-background {
-    background-color: #1F2937;
-}
-
-.secondary-background {
-    background-color: #E5E5EA;
-}
-
-.accent-color {
-    color: #00FFFF;
-}
-
-.text-color {
-    color: #FFFFFF;
-}
-.text-color-secondary {
-    color: #C0C0C0;
-}
-
 @layer utilities {
     /* Hide scrollbar for Chrome, Safari and Opera */
     .no-scrollbar::-webkit-scrollbar {

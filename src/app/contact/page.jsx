@@ -85,7 +85,7 @@ const ContactPage = () => {
           ref={formRef}
           onSubmit={sendEmail}
           initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1, zIndex: 100, position: "relative" }}
+          whileInView={{ opacity: 1, zIndex: 30, position: "relative" }}
           transition={{ delay: 4, duration: 2 }}
           className="flex flex-col gap-4"
         >

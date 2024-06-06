@@ -9,7 +9,7 @@ import { motion } from "framer-motion";
 const links = [
   { url: "/", title: "Home" },
   { url: "/about", title: "About" },
-  { url: "/project", title: "Project" },
+  { url: "/project", title: "Projects" },
   { url: "/contact", title: "Contact" },
 ];
 
@@ -91,7 +91,7 @@ const Navbar = () => {
       {/* SOCIAL */}
       <div className="hidden md:flex gap-8 w-1/3">
         <Link href="/">
-          <Image src="/github.png" alt="github" width={26} height={26} />
+          {/* <Image src="/github.png" alt="github" width={26} height={26} /> */}
         </Link>
         <Link href="/">
           <Image src="/instagram.png" alt="instagram" width={26} height={26} />

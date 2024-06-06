@@ -32,7 +32,7 @@ const ContactPage = () => {
   return (
 <motion.div
       ref={ref}
-      className="contact h-full max-w-[1366px] mx-auto flex items-center gap-4 flex-col p-4 md:flex-row md:p-8"
+      className="contact h-full pt-24 max-w-[1366px] mx-auto flex items-center gap-4 flex-col p-4 md:flex-row md:p-8"
       variants={variants}
       initial="initial"
       whileInView="animate"

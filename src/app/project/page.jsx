@@ -1,8 +1,10 @@
 "use client";
+import { SparklesCore } from "@/components/sparkles";
+import { StickyScroll } from "@/components/sticky-scroll-reveal";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 const items = [
   {
@@ -35,58 +37,137 @@ const items = [
   },
 ];
 
-const PortfolioPage = () => {
-  const ref = useRef();
+const content = [
+  {
+    title: "Collaborative Editing",
+    description:
+      "Work together in real time with your team, clients, and stakeholders. Collaborate on documents, share ideas, and make decisions quickly. With our platform, you can streamline your workflow and increase productivity.",
+    content: (
+      <div className="h-full w-full bg-[linear-gradient(to_bottom_right,#06b6d4,#10b981)] flex items-center justify-center text-white">
+        Collaborative Editing
+      </div>
+    ),
+  },
+  {
+    title: "Real time changes",
+    description:
+      "See changes as they happen. With our platform, you can track every modification in real time. No more confusion about the latest version of your project. Say goodbye to the chaos of version control and embrace the simplicity of real-time updates.",
+    content: (
+      <div className="h-full w-full  flex items-center justify-center text-white">
+        <Image
+          src="/profile-2.jpg"
+          width={300}
+          height={300}
+          className="h-full w-full object-cover"
+          alt="linear board demo"
+        />
+      </div>
+    ),
+  },
+  {
+    title: "Version control",
+    description:
+      "Experience real-time updates and never stress about version control again. Our platform ensures that you're always working on the most recent version of your project, eliminating the need for constant manual updates. Stay in the loop, keep your team aligned, and maintain the flow of your work without any interruptions.",
+    content: (
+      <div className="h-full w-full bg-[linear-gradient(to_bottom_right,#f97316,#eab308)] flex items-center justify-center text-white">
+        Version control
+      </div>
+    ),
+  },
+  {
+    title: "Running out of content",
+    description:
+      "Experience real-time updates and never stress about version control again. Our platform ensures that you're always working on the most recent version of your project, eliminating the need for constant manual updates. Stay in the loop, keep your team aligned, and maintain the flow of your work without any interruptions.",
+    content: (
+      <div className="h-full w-full bg-[linear-gradient(to_bottom_right,#06b6d4,#10b981)] flex items-center justify-center text-white">
+        Running out of content
+      </div>
+    ),
+  },
+];
 
-  const { scrollYProgress } = useScroll({ target: ref });
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-80%"]);
+const ProjectPage = () => {
+  const sectionRef = useRef(null);
+  const projectRef = useRef(null);
+
+  const sectionScroll = useScroll({
+    target: sectionRef,
+    offset: ['start start', 'end start'],
+  });
+
+  const projectScroll = useScroll({
+    target: projectRef,
+  });
+
+ 
+  const textY = useTransform(sectionScroll.scrollYProgress, [0, 1], ['0%', '500%']);
+  const bgY = useTransform(sectionScroll.scrollYProgress, [0, 1], ['0%', '100%']);
+  const projectX = useTransform(projectScroll.scrollYProgress, [0, 1], ['0%', '-80%']);
 
   return (
     <motion.div
-      className="h-full"
+      className="h-full no-scrollbar"
       initial={{ y: "-200vh" }}
       animate={{ y: "0%" }}
       transition={{ duration: 1 }}
+      ref={sectionRef}
     >
-      <div className="h-[600vh] relative" ref={ref}>
-        <div className="w-screen h-[calc(100vh-6rem)] flex items-center justify-center text-8xl text-center text-white">
-          My Works
-        </div>
-        <div className="sticky top-0 flex h-screen gap-4 items-center overflow-hidden">
-          <motion.div style={{ x }} className="flex bg-[#1F2937]">
-            <div className="h-screen w-screen flex items-center justify-center" />
+      <div
+        className="parallax w-full h-full relative flex items-center justify-center overflow-y-scroll no-scrollbar"
+        style={{
+          background: "linear-gradient(180deg, #1F2937, #1F2937)",
+        }}
+      >
+        <motion.h1
+          className="xl:text-8xl sm:text-6xl text-5xl text-[#fff] font-bold md:text-center"
+          style={{ y: textY }}
+        >
+          Creations
+        </motion.h1>
+        <motion.div
+          className="mountains bg-cover bg-bottom w-full h-full absolute z-[3] md:bg-no-repeat"
+          style={{ backgroundImage: "url('/mountains.png')" }}
+        ></motion.div>
+        <motion.div
+          className="planets bg-cover bg-bottom w-full h-full absolute z-[2] md:bg-contain md:bg-no-repeat"
+          style={{
+            y: bgY,
+            backgroundImage: `url(${"/sun.png"})`,
+          }}
+        ></motion.div>
+        <SparklesCore
+          id="tsparticlesfullpage"
+          background="transparent"
+          minSize={0.6}
+          maxSize={1.4}
+          particleDensity={100}
+          className="stars bg-cover bg-bottom w-full h-full absolute z-[1]"
+          particleColor="#FFFFFF"
+        />
+        <motion.div
+          className="stars bg-cover bg-bottom w-full h-full absolute z-[1]"
+          style={{ backgroundImage: "url('/stars.png')",x: bgY }}
+        ></motion.div>
+      </div>
+
+      <div className="h-[600vh] relative bg-[#1F2937] pt-[5%] pb-[8%]" ref={projectRef}>
+        <div className="sticky top-[5%] flex h-screen gap-4 items-center overflow-x-scroll no-scrollbar">
+          <motion.div style={{ x:projectX }} className="flex bg-[#1F2937]">
+            {/* <div className="h-screen w-screen flex items-center justify-center" /> */}
             {items.map((item) => (
-              <div
-                className={`h-screen w-screen flex items-center justify-center bg-[#1F2937]`}
-                key={item.id}
-              >
-                <div className="flex flex-col gap-8 text-white">
-                  <h1 className="text-xl font-bold md:text-4xl lg:text-6xl xl:text-8xl">
-                    {item.title}
-                  </h1>
-                  <div className="relative w-80 h-56 md:w-96 md:h-64 lg:w-[500px] lg:h-[350px] xl:w-[600px] xl:h-[420px]">
-                    <Image src={item.img} alt="" fill />
-                  </div>
-                  <p className="w-80 md:w96 lg:w-[500px] lg:text-lg xl:w-[600px]">
-                    {item.desc}
-                  </p>
-                  <Link href={item.link} className="flex justify-end">
-                    <button className="p-2 text-sm md:p-4 md:text-md lg:p-8 lg:text-lg bg-white text-gray-600 font-semibold m-4 rounded">See Demo</button>
-                  </Link>
-                </div>
-              </div>
+              <StickyScroll contents={content} item={item} />
             ))}
           </motion.div>
         </div>
       </div>
       <div className="w-screen h-screen flex flex-col gap-16 items-center justify-center text-center text-white bg-[#1F2937]">
-        <h1 className="text-8xl">Do you have a project?</h1>
+        <h1 className="xl:text-8xl sm:text-6xl text-4xl">Do you have a project?</h1>
         <div className="relative">
           <motion.svg
             animate={{ rotate: 360 }}
             transition={{ duration: 8, ease: "linear", repeat: Infinity }}
             viewBox="0 0 300 300"
-            className="w-64 h-64 md:w-[500px] md:h-[500px]"
+            className="w-48 h-48 md:w-[500px] md:h-[500px]"
           >
             <defs>
               <path
@@ -95,21 +176,21 @@ const PortfolioPage = () => {
               />
             </defs>
             <text fill="#fff">
-              <textPath xlinkHref="#circlePath" className="text-xl">
-                Front-end Developer  and  UI Designer
-              </textPath>
+            <textPath xlinkHref="#circlePath" className="text-xl">Backend Developer
+            </textPath>
             </text>
           </motion.svg>
           <Link
-            href="/contact"
-            className="w-16 h-16 md:w-28 md:h-28 absolute top-0 left-0 right-0 bottom-0 m-auto bg-white text-black rounded-full flex items-center justify-center"
-          >
-            Hire Me
-          </Link>
+  href="/contact"
+  className="w-16 h-16 sm:w-20 sm:h-20 md:w-28 md:h-28 lg:w-32 lg:h-32 xl:w-36 xl:h-36 absolute top-0 left-0 right-0 bottom-0 m-auto bg-white text-black rounded-full flex items-center justify-center"
+>
+  Hire Me
+</Link>
+
         </div>
       </div>
     </motion.div>
   );
 };
 
-export default PortfolioPage;
+export default ProjectPage;

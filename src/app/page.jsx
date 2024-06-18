@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 const Homepage = () => {
   return (
@@ -11,7 +12,7 @@ const Homepage = () => {
       animate={{ y: "0%" }}
       transition={{ duration: 1 }}
     >
-      <div className="h-full flex flex-col lg:flex-row-reverse px-4 sm:px-8 md:px-12 lg:px-20 xl:px-48">
+      <div className="h-[100vh] flex flex-col lg:flex-row-reverse px-4 sm:px-8 md:px-12 lg:px-20 xl:px-48">
         {/* IMAGE CONTAINER */}
         <div className="h-1/2 lg:h-full lg:w-1/2 relative">
           <Image src="/portfolio.png" alt="hero-image" fill className="object-contain" />
@@ -19,7 +20,7 @@ const Homepage = () => {
         {/* TEXT CONTAINER */}
         <div className="h-1/2 lg:h-full lg:w-1/2 flex flex-col gap-8 items-center justify-center">
           {/* TITLE */}
-          <h1 className="text-[#ffffff] text-4xl lg:text-6xl font-bold">
+          <h1 className="text-[#ffffff] text-4xl md:text-5xl lg:text-6xl font-bold">
             Crafting Digital Experiences, Designing Tomorrow.
           </h1>
           {/* DESC */}
@@ -31,12 +32,16 @@ const Homepage = () => {
           </p>
           {/* BUTTONS */}
           <div className="w-full flex gap-4">
-            <button className="p-4 rounded-lg ring-1 ring-[#00ffff] bg-[#00ffff] text-black">
+            <Link href="/project">
+            <button className="p-4 rounded-lg ring-1 ring-[#00ffff] bg-[#00ffff] text-black font-medium">
               View My Work
             </button>
+            </Link>
+            <Link href="/contact">
             <button className="p-4 rounded-lg ring-1 text-[#ffffff] ring-[#c0c0c0]">
               Contact Me
             </button>
+            </Link>
           </div>
         </div>
       </div>

@@ -100,8 +100,9 @@ const ProjectPage = () => {
   });
 
  
-  const textY = useTransform(sectionScroll.scrollYProgress, [0, 1], ['0%', '500%']);
+  const textY = useTransform(sectionScroll.scrollYProgress, [0, 1], ['0%', '1000%']);
   const bgY = useTransform(sectionScroll.scrollYProgress, [0, 1], ['0%', '100%']);
+  const sunY = useTransform(sectionScroll.scrollYProgress, [0, 1], ['0%', '50%']);
   const projectX = useTransform(projectScroll.scrollYProgress, [0, 1], ['0%', '-80%']);
 
   return (
@@ -110,13 +111,13 @@ const ProjectPage = () => {
       initial={{ y: "-200vh" }}
       animate={{ y: "0%" }}
       transition={{ duration: 1 }}
-      ref={sectionRef}
     >
       <div
-        className="parallax w-full h-full relative flex items-center justify-center overflow-y-scroll no-scrollbar"
+        className="parallax w-screen h-[90vh] relative flex items-center justify-center"
         style={{
           background: "linear-gradient(180deg, #1F2937, #1F2937)",
         }}
+        ref={sectionRef}
       >
         <motion.h1
           className="xl:text-8xl sm:text-6xl text-5xl text-[#fff] font-bold md:text-center"
@@ -129,9 +130,9 @@ const ProjectPage = () => {
           style={{ backgroundImage: "url('/mountains.png')" }}
         ></motion.div>
         <motion.div
-          className="planets bg-cover bg-bottom w-full h-full absolute z-[2] md:bg-contain md:bg-no-repeat"
+          className="planets bg-cover bg-bottom w-full h-full absolute md:bg-contain md:bg-no-repeat"
           style={{
-            y: bgY,
+            y: sunY,
             backgroundImage: `url(${"/sun.png"})`,
           }}
         ></motion.div>
@@ -145,8 +146,8 @@ const ProjectPage = () => {
           particleColor="#FFFFFF"
         />
         <motion.div
-          className="stars bg-cover bg-bottom w-full h-full absolute z-[1]"
-          style={{ backgroundImage: "url('/stars.png')",x: bgY }}
+          className="stars bg-contain bg-bottom w-full h-full absolute"
+          style={{ backgroundImage: "url('/stars.png')",y: bgY }}
         ></motion.div>
       </div>
 
@@ -167,7 +168,7 @@ const ProjectPage = () => {
             animate={{ rotate: 360 }}
             transition={{ duration: 8, ease: "linear", repeat: Infinity }}
             viewBox="0 0 300 300"
-            className="w-48 h-48 md:w-[500px] md:h-[500px]"
+            className="w-64 h-64 md:w-[500px] md:h-[500px]"
           >
             <defs>
               <path
@@ -176,13 +177,13 @@ const ProjectPage = () => {
               />
             </defs>
             <text fill="#fff">
-            <textPath xlinkHref="#circlePath" className="text-xl">Backend Developer
+            <textPath xlinkHref="#circlePath" className="text-2xl">Python Full Stack Developer
             </textPath>
             </text>
           </motion.svg>
           <Link
   href="/contact"
-  className="w-16 h-16 sm:w-20 sm:h-20 md:w-28 md:h-28 lg:w-32 lg:h-32 xl:w-36 xl:h-36 absolute top-0 left-0 right-0 bottom-0 m-auto bg-white text-black rounded-full flex items-center justify-center"
+  className="font-medium w-20 h-20  md:w-28 md:h-28 lg:w-32 lg:h-32 xl:w-36 xl:h-36 absolute top-0 left-0 right-0 bottom-0 m-auto bg-white text-black rounded-full flex items-center justify-center"
 >
   Hire Me
 </Link>

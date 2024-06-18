@@ -7,7 +7,7 @@ import { useRef } from "react";
 const AboutPage = () => {
   const containerRef = useRef();
 
-  const { scrollYProgress } = useScroll({ container: containerRef });
+  const { scrollYProgress } = useScroll({ target: containerRef });
 
   const skillRef = useRef();
   // const isSkillRefInView = useInView(skillRef, {once:true});
@@ -24,7 +24,7 @@ const AboutPage = () => {
       transition={{ duration: 1 }}
     >
       {/* CONTAINER */}
-      <div className="h-full overflow-y-scroll no-scrollbar lg:flex" ref={containerRef}>
+      <div className="h-full lg:flex" ref={containerRef}>
         {/* TEXT CONTAINER */}
         <div className="p-4 sm:p-8 md:p-12 lg:p-20 xl:p-48 flex flex-col gap-24 md:gap-32 lg:gap-48 xl:gap-64 lg:w-2/3 lg:pr-0 xl:w-1/2">
           {/* BIOGRAPHY CONTAINER */}
@@ -75,7 +75,7 @@ const AboutPage = () => {
             </motion.svg>
           </div>
           {/* SKILLS CONTAINER */}
-          <div className="flex flex-col gap-12 justify-center text-[#fff]" ref={skillRef}>
+          <div className="flex flex-col gap-12 justify-center text-[#fff] py-16" ref={skillRef}>
             {/* SKILL TITLE */}
             <motion.h1
               initial={{ x: "-300px" }}
@@ -139,12 +139,12 @@ const AboutPage = () => {
           </div>
           {/* EXPERIENCE CONTAINER */}
           <div
-            className="flex flex-col gap-12 justify-center pb-48"
+            className="flex flex-col gap-12 justify-center"
             ref={experienceRef}
           >
             {/* EXPERIENCE TITLE */}
             <motion.h1
-              initial={{ x: "-300px" }}
+              initial={{ x: "-140%" }}
               animate={isExperienceRefInView ? { x: "0" } : {}}
               transition={{ delay: 0.2 }}
               className="font-bold text-2xl text-white"
@@ -153,8 +153,9 @@ const AboutPage = () => {
             </motion.h1>
             {/* EXPERIENCE LIST */}
             <motion.div
-              initial={{ x: "-300px" }}
+              initial={{ x: "-140%" }}
               animate={isExperienceRefInView ? { x: "0" } : {}}
+              transition={{ delay: 0.2 }}
               className=""
             >
               {/* EXPERIENCE LIST ITEM */}
@@ -224,7 +225,7 @@ const AboutPage = () => {
                 </div>
               </div>
               {/* EXPERIENCE LIST ITEM */}
-              <div className="flex justify-between h-48">
+              <div className="flex justify-between md:h-48 h-fit">
                 {/* LEFT */}
                 <div className="w-1/3 ">
                   {/* JOB TITLE */}
@@ -260,7 +261,7 @@ const AboutPage = () => {
           </div>
         </div>
         {/* SVG CONTAINER */}
-        <div className="hidden lg:block w-1/3 sticky top-[10%] z-30 xl:w-1/2">
+        <div className="hidden h-[80vh] lg:block w-1/3 sticky top-[10%] z-30 xl:w-1/2">
           <Brain scrollYProgress={scrollYProgress} />
         </div>
       </div>

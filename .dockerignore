@@ -1,0 +1,22 @@
+# Node-specific
+/node_modules
+/.next
+dist
+
+# Build tools and caches
+webpack.config.js
+.babelrc
+.cache
+
+# Testing files
+test
+__tests__
+coverage
+
+# OS-generated
+.DS_Store
+Thumbs.db
+
+# VCS
+.git
+.svn

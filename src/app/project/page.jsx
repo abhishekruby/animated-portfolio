@@ -161,14 +161,14 @@ const ProjectPage = () => {
           </motion.div>
         </div>
       </div>
-      <div className="w-screen h-screen flex flex-col gap-16 items-center justify-center text-center text-white bg-[#1F2937]">
+      <div className="w-screen h-screen flex flex-col items-center justify-center text-center text-white bg-[#1F2937]">
         <h1 className="xl:text-8xl sm:text-6xl text-4xl">Do you have a project?</h1>
         <div className="relative">
           <motion.svg
             animate={{ rotate: 360 }}
             transition={{ duration: 8, ease: "linear", repeat: Infinity }}
             viewBox="0 0 300 300"
-            className="w-64 h-64 md:w-[500px] md:h-[500px]"
+            className="w-64 h-6w-64 md:w-[500px] md:h-[500px]"
           >
             <defs>
               <path
@@ -177,7 +177,7 @@ const ProjectPage = () => {
               />
             </defs>
             <text fill="#fff">
-            <textPath xlinkHref="#circlePath" className="text-2xl">Python Full Stack Developer
+            <textPath xlinkHref="#circlePath" className="text-xl">|| Python Full Stack Developer ||
             </textPath>
             </text>
           </motion.svg>

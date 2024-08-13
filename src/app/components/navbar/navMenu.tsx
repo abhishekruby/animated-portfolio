@@ -6,8 +6,16 @@ import { useState } from "react";
 import { TwitterIcon, LinkedinIcon, GithubIcon } from 'next-share';
 import Link from 'next/link';
 
+interface LinkList {
+  title: string;
+  url: string;
+}
 
-const NavMenu = ({links}) => {
+interface NavMenuProps {
+  links: LinkList[];
+}
+
+const NavMenu = ({links}:NavMenuProps) => {
   const [open, setOpen] = useState(false);
 
   const topVariants = {

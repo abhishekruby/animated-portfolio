@@ -1,6 +1,4 @@
 "use client";
-import { SparklesCore } from "@/components/sparkles";
-import { StickyScroll } from "@/components/sticky-scroll-reveal";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -107,7 +105,7 @@ const ProjectPage = () => {
 
   return (
     <motion.div
-      className="h-full no-scrollbar"
+      className="h-full"
       initial={{ y: "-200vh" }}
       animate={{ y: "0%" }}
       transition={{ duration: 1 }}
@@ -136,15 +134,6 @@ const ProjectPage = () => {
             backgroundImage: `url(${"/sun.png"})`,
           }}
         ></motion.div>
-        <SparklesCore
-          id="tsparticlesfullpage"
-          background="transparent"
-          minSize={0.6}
-          maxSize={1.4}
-          particleDensity={100}
-          className="stars bg-cover bg-bottom w-full h-full absolute z-[1]"
-          particleColor="#FFFFFF"
-        />
         <motion.div
           className="stars bg-contain bg-bottom w-full h-full absolute"
           style={{ backgroundImage: "url('/stars.png')",y: bgY }}
@@ -152,12 +141,9 @@ const ProjectPage = () => {
       </div>
 
       <div className="h-[600vh] relative bg-[#1F2937] pt-[5%] pb-[8%]" ref={projectRef}>
-        <div className="sticky top-[5%] flex h-screen gap-4 items-center overflow-x-scroll no-scrollbar">
+        <div className="sticky top-[5%] flex h-screen gap-4 items-center">
           <motion.div style={{ x:projectX }} className="flex bg-[#1F2937]">
             {/* <div className="h-screen w-screen flex items-center justify-center" /> */}
-            {items.map((item) => (
-              <StickyScroll contents={content} item={item} />
-            ))}
           </motion.div>
         </div>
       </div>

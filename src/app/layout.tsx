@@ -1,5 +1,8 @@
+import React from "react";
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
+import AnimatedCursor from "react-animated-cursor"
+
 import "@/styles/globals.css";
 import TransitionProvider from "@components/transition-provider";
 
@@ -17,7 +20,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={roboto.className}>
+      <body className={roboto.className} suppressHydrationWarning={true}>
+        <AnimatedCursor innerSize={20} color='6, 182, 212' />
         <TransitionProvider>{children}</TransitionProvider>
       </body>
     </html>

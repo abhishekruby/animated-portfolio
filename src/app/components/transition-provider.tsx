@@ -33,7 +33,7 @@ const TransitionProvider = ({ children }: { children: ReactNode }) => {
           initial={{ y: -100 }}
           animate={{ y: showNavbar ? 0 : -100 }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
-          className="fixed top-5 z-10 w-full flex items-center"
+          className="fixed top-5 z-20 w-full flex items-center"
         >
           <Navbar setShowNavbar={setShowNavbar} />
         </motion.div>

@@ -18,7 +18,7 @@ const IntroBox = () => {
       >
         {/* TITLE */}
         <motion.h1
-          className="text-neutral-100  text-5xl w-full md:text-6xl lg:text-7xl font-bold"
+          className="text-neutral-100  text-5xl w-full md:text-6xl lg:text-7xl font-bold flex-nowrap"
           initial={{ opacity: 0, x: -100 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
@@ -29,7 +29,7 @@ const IntroBox = () => {
   
         {/* DESC */}
         <motion.p
-          className="text-neutral-300 text-lg pr-24"
+          className="text-neutral-300 text-xl pr-20"
           initial={{ opacity: 0, x: 100 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, ease: "easeOut", delay: 0.4 }}

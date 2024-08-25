@@ -34,11 +34,8 @@ function HeadText({text,highlight}:HeadTextProps) {
         animate={{ scaleX: 1 }}
         transition={{ duration: 0.5, ease: 'easeInOut', delay: 0.2 }}
         className="w-2/3 h-1.5 bg-primary bg-cyan-600 rounded-full mb-8"
-        style={{
-          boxShadow: '0px 10px 20px rgba(255, 255, 255, 0.2)',
-        }}
         whileHover={{
-          boxShadow: '0px 15px 30px rgba(255, 255, 255, 0.3)',
+          boxShadow: '0px 0px 30px 2px rgba(6, 182, 212, 0.2)',
           scaleY: 1.5,
           transition: { duration: 0.5 },
         }}

@@ -13,7 +13,7 @@ function About() {
       initial={{ y: 100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: 'easeInOut' }}
-      className='h-[125vh] px-40 py-40 relative'
+      className='h-[105vh] px-40 py-40 relative'
     >
       <motion.div
         initial={{ x: -100, opacity: 0 }}
@@ -23,17 +23,18 @@ function About() {
       >
         <HeadText text='Get to Know' highlight='Me' />
       </motion.div>
+      
       <motion.div
         initial={{ y: 50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, ease: 'easeInOut', delay: 0.4 }}
-        className='flex justify-center items-center h-4/5 w-full'
+        className='flex justify-center items-center h-full w-full pt-16'
       >
         <motion.div
           initial={{ scale: 0.5, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.5, ease: 'easeInOut', delay: 0.6 }}
-          className='flex justify-center items-center h-full w-full'
+          className='flex justify-center items-start h-full w-full'
         >
           <ProfileImage />
         </motion.div>
@@ -41,7 +42,7 @@ function About() {
           initial={{ scale: 0.5, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.5, ease: 'easeInOut', delay: 0.8 }}
-          className='flex justify-center items-center h-full w-full'
+          className='flex justify-center items-start h-full w-full'
         >
           <DetailBox />
         </motion.div>

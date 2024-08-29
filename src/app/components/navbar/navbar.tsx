@@ -3,13 +3,14 @@
 import { useState, useEffect } from "react";
 import NavLink from "./navLink";
 import { motion } from "framer-motion";
-import NavMenu from "./navMenu";
+
 
 const links = [
-  { url: "/", title: "Home" },
-  { url: "/about", title: "About" },
-  { url: "/project", title: "Projects" },
-  { url: "/contact", title: "Contact" },
+  { id: "home", title: "Home" },
+  { id: "about", title: "About" },
+  { id: "project", title: "Projects" },
+  { id: "contribution", title: "Contribution" },
+  { id: "contact", title: "Contact" },
 ];
 
 const Navbar = ({setShowNavbar}:any) => {
@@ -33,14 +34,13 @@ const Navbar = ({setShowNavbar}:any) => {
   }, [lastScrollY]);
 
   return (
-    
       <nav className="w-full flex justify-center gap-[15%] items-center py-4">
         {/* LINKS */}
         <motion.ul
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: "easeIn" }}
-          className="hidden md:flex gap-3 ring-1 ring-slate-600 bg-slate-700 rounded-full p-4"
+          className="flex gap-3 ring-1 ring-slate-600 bg-slate-700 rounded-full p-4"
         >
           {links.map((link) => (
             <li key={link.title}>
@@ -48,8 +48,6 @@ const Navbar = ({setShowNavbar}:any) => {
             </li>
           ))}
         </motion.ul>
-        {/* RESPONSIVE MENU */}
-        <NavMenu links={links} />
       </nav>
   );
 };

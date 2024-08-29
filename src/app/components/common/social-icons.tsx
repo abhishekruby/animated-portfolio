@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { TwitterIcon, LinkedinIcon, GithubIcon } from "next-share";
 
 
-function SocialIcon() {
+function SocialIcon({size=50}:{size:number}) {
   return (
     <div className="flex items-center justify-start gap-8 w-full">
     <motion.div
@@ -12,7 +12,7 @@ function SocialIcon() {
       transition={{ duration: 0.3 }}
     >
       <Link href="/">
-        <GithubIcon size={55} round />
+        <GithubIcon size={size+5} round />
       </Link>
     </motion.div>
     <motion.div
@@ -20,7 +20,7 @@ function SocialIcon() {
       transition={{ duration: 0.3 }}
     >
       <Link href="/">
-        <LinkedinIcon size={50} round />
+        <LinkedinIcon size={size} round />
       </Link>
     </motion.div>
     <motion.div
@@ -28,7 +28,7 @@ function SocialIcon() {
       transition={{ duration: 0.3 }}
     >
       <Link href="/">
-        <TwitterIcon size={50} round />
+        <TwitterIcon size={size} round />
       </Link>
     </motion.div>
   </div>

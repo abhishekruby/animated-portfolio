@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode, useState } from 'react';
+import { ReactNode, useRef, useState } from 'react';
 import { AnimatePresence } from "framer-motion";
 import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
@@ -12,6 +12,9 @@ import CustomScrollbar from './ui/custom-scroll-bar';
 const TransitionProvider = ({ children }: { children: ReactNode }) => {
   const pathName = usePathname();
   const [showNavbar, setShowNavbar] = useState(true);
+
+  const ScrollbarRef = useRef(null);
+
   return (
     <AnimatePresence mode="wait">
       <div
@@ -28,16 +31,16 @@ const TransitionProvider = ({ children }: { children: ReactNode }) => {
           animate={{ height: "0vh" }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         />
-        <CustomScrollbar/>
+        <CustomScrollbar ScrollbarRef={ScrollbarRef}/>
         <motion.div
           initial={{ y: -100 }}
           animate={{ y: showNavbar ? 0 : -100 }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
-          className="fixed top-5 z-20 w-full flex items-center"
+          className="fixed top-5 z-50 w-full flex items-center"
         >
           <Navbar setShowNavbar={setShowNavbar} />
         </motion.div>
-        <div className="h-auto">
+        <div ref={ScrollbarRef} className="h-auto">
           {children}
         </div>
       </div>

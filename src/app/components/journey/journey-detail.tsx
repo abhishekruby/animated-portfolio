@@ -6,11 +6,20 @@ import GreenTick from '../common/green-tick'
 
 function JourneyDetail() {
     return (
-        <div className="w-2/5">
+        <motion.div
+            initial={{ opacity: 0, x : 400 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{
+                duration: 0.5,
+                ease: 'easeInOut',
+                delay: 0.5
+            }}
+            className="w-2/5"
+        >
             {/* Logo */}
             <motion.div
                 initial={{ scale: 0.9 }}
-                animate={{ scale: 1 }}
+                whileInView={{ scale: 1 }}
                 transition={{
                     duration: 0.5,
                     ease: 'easeInOut',
@@ -62,7 +71,7 @@ function JourneyDetail() {
             <div className="p-1 px-2 rounded text-neutral-900 bg-slate-100 text-lg font-semibold w-fit mt-2">
                 Apple
             </div>
-        </div>
+        </motion.div>
 
     )
 }

@@ -1,23 +1,25 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-
+import { Link } from 'react-scroll';
 
 interface NavLinkProps {
   link : {
     title: string;
-    url: string;
+    id: string;
   }
 }
 
 const NavLink = ({ link }:NavLinkProps) => {
-  const pathName = usePathname();
 
   return (
-    <Link 
-    className={`text-base font-medium rounded-lg p-2 text-neutral-200 ${pathName === link.url ? "bg-slate-200 text-neutral-900":"hover:bg-slate-200 hover:bg-opacity-60 hover:text-slate-900"}`} 
-    href={link.url}
+    <Link
+      to={link.id}
+      smooth={true}
+      duration={500}
+      offset={-100}
+      spy={true}
+      activeClass="active bg-slate-200 text-neutral-900"
+      className={`text-base font-medium rounded-lg p-2 text-neutral-200 hover:bg-slate-200 hover:bg-opacity-60 hover:text-slate-900`} 
   >
     {link.title}
   </Link>

@@ -9,13 +9,13 @@ function Skill() {
   return (
     <motion.div
       initial={{ opacity: 0, y: 100 }}
-      animate={{ opacity: 1, y: 0 }}
+      whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: 'easeInOut' }}
       className='px-40 py-40 relative'
     >
       <motion.div
         initial={{ opacity: 0, x: -100 }}
-        animate={{ opacity: 1, x: 0 }}
+        whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5, ease: 'easeInOut', delay: 0.2 }}
         className='flex justify-start items-center h-40 mb-8'
       >
@@ -23,7 +23,7 @@ function Skill() {
       </motion.div>
       <motion.div
         initial={{ opacity: 0, scale: 0.5 }}
-        animate={{ opacity: 1, scale: 1 }}
+        whileInView={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5, ease: 'easeInOut', delay: 0.4 }}
         className="flex flex-wrap h-full rounded-2xl bg-slate-800 bg-opacity-50"
       >
@@ -34,8 +34,8 @@ function Skill() {
       </motion.div>
       {/* Scroll Svg */}
       <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, x: 50 }}
+        animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5, ease: 'easeInOut', delay: 0.6 }}
       >
         <ScrollSvg />

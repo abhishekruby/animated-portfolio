@@ -7,14 +7,14 @@ function SkillBox({ title }: { title: string }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, ease: 'easeInOut' }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.7, ease: 'easeInOut' }}
       className="w-1/2 h-fit p-10"
     >
       <motion.div
         initial={{ opacity: 0, x: -50 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.5, ease: 'easeInOut', delay: 0.2 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.7, ease: 'easeInOut', delay: 0.2 }}
         className="w-full p-4 text-center"
       >
         <h2 className="text-4xl text-slate-200 font-medium">{title}</h2>
@@ -22,8 +22,8 @@ function SkillBox({ title }: { title: string }) {
       <GlowingLine />
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5, ease: 'easeInOut', delay: 0.6 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.7, ease: 'easeInOut', delay: 0.6 }}
         className="p-5 px-14 flex flex-wrap gap-2 items-center justify-center"
       >
         {
@@ -31,8 +31,8 @@ function SkillBox({ title }: { title: string }) {
             return (
               <motion.div
                 initial={{ opacity: 0, scale: 0.5 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, ease: 'easeInOut', delay: key * 0.1 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.7, ease: 'easeInOut', delay: key * 0.1 }}
                 key={key}
               >
                 <SkillIcon />

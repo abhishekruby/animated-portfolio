@@ -8,8 +8,11 @@ import ScrollSvg from '../ui/scroll-svg'
 
 function Spotlight() {
   return (
-    <div className="h-[100vh] flex flex-col lg:flex-row-reverse px-4 sm:px-8 md:px-12 lg:px-20 xl:px-48 relative">
+    <div id='home' className="h-[100vh] flex flex-col lg:flex-row-reverse px-4 sm:px-8 md:px-12 lg:px-20 xl:px-48 relative">
     <motion.div
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity : 1}}
+      transition={{ duration: 1, ease: "easeInOut", delay: 0.5 }}
       className="h-1/2 lg:h-full lg:w-1/2"
     >
       <ThreeScene />

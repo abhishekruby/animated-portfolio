@@ -9,7 +9,7 @@ function IconPointer() {
         <div className='absolute top-5 left-1/2 w-1 h-fit rounded'>
             <motion.div
                 initial={{ scale: 0.9 }}
-                animate={{ scale: 1 }}
+                whileInView={{ scale: 1 }}
                 transition={{
                     duration: 0.5,
                     ease: 'easeInOut',

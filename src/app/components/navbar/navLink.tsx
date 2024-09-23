@@ -19,7 +19,7 @@ const NavLink = ({ link }:NavLinkProps) => {
       offset={-100}
       spy={true}
       activeClass="active bg-slate-200 text-neutral-900"
-      className={`text-base font-medium rounded-lg p-2 text-neutral-200 hover:bg-slate-200 hover:bg-opacity-60 hover:text-slate-900`} 
+      className={`text-sm md:text-base font-medium rounded-lg p-1 lg:p-2 text-neutral-200 hover:bg-slate-200 hover:bg-opacity-60 hover:text-slate-900`} 
   >
     {link.title}
   </Link>

@@ -24,16 +24,17 @@ function ProfileImage() {
       <Image
         src="/profile.png"
         alt="Profile"
-        className="w-full h-auto object-cover transition-all duration-300"
+        className="w-full h-auto object-cover transition-all duration-300 "
         width={500}
         height={500}
         style={{
           borderRadius: '1rem',
         }}
+        
       />
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: 0.7 }}
+        animate={{ opacity: 0 }}
         transition={{
           duration: 0.5,
           delay: 0.2,

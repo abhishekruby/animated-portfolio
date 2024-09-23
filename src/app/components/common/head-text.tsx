@@ -16,7 +16,7 @@ function HeadText({text,highlight}:HeadTextProps) {
       transition={{ duration: 0.5, ease: 'easeInOut' }}
     >
       <motion.h2
-        className="text-neutral-200 text-8xl font-extrabold mb-4"
+        className="text-neutral-200 text-4xl md:text-6xl lg:text-8xl font-extrabold mb-1 md:mb-4"
         style={{
           textShadow: '0px 0px 10px rgba(0, 0, 0, 0.2)',
           letterSpacing: '-2px',
@@ -33,7 +33,7 @@ function HeadText({text,highlight}:HeadTextProps) {
         initial={{ scaleX: 0 }}
         animate={{ scaleX: 1 }}
         transition={{ duration: 0.5, ease: 'easeInOut', delay: 0.2 }}
-        className="w-2/3 h-1.5 bg-primary bg-cyan-600 rounded-full mb-8"
+        className="w-1/2 lg:w-2/3 h-1.5 bg-primary bg-cyan-600 rounded-full mb-8"
         whileHover={{
           boxShadow: '0px 0px 30px 2px rgba(6, 182, 212, 0.2)',
           scaleY: 1.5,

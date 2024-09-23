@@ -1,52 +1,52 @@
-"use client";
-
-import { ReactNode, useRef, useState } from 'react';
+'use client'
+import { ReactNode, useRef } from 'react';
 import { AnimatePresence } from "framer-motion";
 import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
+import { useState, useEffect } from "react";
 
-import Navbar from "@components/navbar/navbar";
 import CustomScrollbar from './ui/custom-scroll-bar';
-
+import HamsterWheelLoader from './loader/hamster-wheel-loader';
 
 const TransitionProvider = ({ children }: { children: ReactNode }) => {
   const pathName = usePathname();
-  const [showNavbar, setShowNavbar] = useState(true);
 
   const ScrollbarRef = useRef(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 2000);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <AnimatePresence mode="wait">
-      <div
-        key={pathName}
-        className="w-full h-auto bg-slate-900 relative"
-      >
-        <motion.div
-          className="h-screen w-screen fixed bg-slate-800 rounded-b-[100px] z-20"
-          animate={{ height: "0vh" }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-        />
-        <motion.div
-          className="h-screen w-screen fixed bottom-0 bg-slate-800 rounded-b-[100px] z-20"
-          animate={{ height: "0vh" }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-        />
-        <CustomScrollbar ScrollbarRef={ScrollbarRef}/>
-        <motion.div
-          initial={{ y: -100 }}
-          animate={{ y: showNavbar ? 0 : -100 }}
-          transition={{ duration: 0.5, ease: "easeInOut" }}
-          className="fixed top-5 z-50 w-full flex items-center"
+      {loading ? (
+        <HamsterWheelLoader/>
+      ) : (
+        <div
+          key={pathName}
+          className="w-full h-auto bg-slate-900 relative"
         >
-          <Navbar setShowNavbar={setShowNavbar} />
-        </motion.div>
-        <div ref={ScrollbarRef} className="h-auto">
-          {children}
+          <motion.div
+            className="h-screen w-screen fixed bg-slate-800 rounded-b-[100px] z-20"
+            animate={{ height: "0vh" }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          />
+          <motion.div
+            className="h-screen w-screen fixed bottom-0 bg-slate-800 rounded-b-[60px] z-20"
+            animate={{ height: "0vh" }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          />
+          <CustomScrollbar ScrollbarRef={ScrollbarRef} />
+          <div ref={ScrollbarRef} className="h-auto">
+            {children}
+          </div>
         </div>
-      </div>
-
-    </AnimatePresence >
+      )}
+    </AnimatePresence>
   );
 };
 
 export default TransitionProvider;
+

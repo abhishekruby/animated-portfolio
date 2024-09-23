@@ -6,7 +6,7 @@ import { motion } from 'framer-motion'
 function IconPointer() {
     return (
 
-        <div className='absolute top-5 left-1/2 w-1 h-fit rounded'>
+        <div className='absolute top-5 left-[90%] md:left-1/2 w-1 h-fit rounded'>
             <motion.div
                 initial={{ scale: 0.9 }}
                 whileInView={{ scale: 1 }}
@@ -21,7 +21,7 @@ function IconPointer() {
                         ease: 'easeInOut',
                     },
                 }}
-                className="relative left-[-20px] flex items-center bg-slate-100 ring-4 ring-cyan-600 justify-center w-12 h-12 rounded-full overflow-hidden shadow-md"
+                className="relative left-[-2px] md:left-[-20px] flex items-center bg-slate-100 ring-4 ring-cyan-600 justify-center w-9 h-9 md:w-12 md:h-12 rounded-full overflow-hidden shadow-md"
             >
                 <Image
                     src="/coding.png"

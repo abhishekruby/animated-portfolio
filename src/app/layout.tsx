@@ -20,8 +20,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={roboto.className} suppressHydrationWarning={true}>
-        <AnimatedCursor innerSize={20} color='6, 182, 212' />
+      <body className={roboto.className+'bg-slate-900'} suppressHydrationWarning={true}>
+        {/* <AnimatedCursor innerSize={20} color='6, 182, 212' /> */}
         <TransitionProvider>{children}</TransitionProvider>
       </body>
     </html>

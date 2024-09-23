@@ -13,13 +13,13 @@ function Contribution() {
             initial={{ y: 100, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.5, ease: 'easeInOut' }}
-            className='h-auto px-40 py-40 relative'
+            className='h-full px-6 py-24 md:py-20 md:px-20 xl:px-36 xl:py-36 relative'
         >
             <motion.div
                 initial={{ x: -100, opacity: 0 }}
                 whileInView={{ x: 0, opacity: 1 }}
                 transition={{ duration: 0.5, ease: 'easeInOut', delay: 0.2 }}
-                className='flex justify-start items-center h-40'
+                className='flex justify-start items-center md:h-40'
             >
                 <HeadText text='Latest ' highlight='Contributions' />
             </motion.div>
@@ -28,7 +28,7 @@ function Contribution() {
                 initial={{ y: 50, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.5, ease: 'easeInOut', delay: 0.4 }}
-                className='flex flex-col gap-24 justify-center items-center h-full w-full pt-10'
+                className='flex flex-col gap-24 justify-center items-center h-full w-full pt-2 md:pt-10'
             >
                  <HoverEffect className='w-full' items={projects} />
             </motion.div>

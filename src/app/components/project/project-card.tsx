@@ -30,14 +30,15 @@ const ProjectCard: FC = () => {
 
   return (
     <motion.div
-      className="bg-slate-800 bg-opacity-75 rounded-lg shadow-lg max-w-sm mx-auto"
+      className="bg-slate-800 bg-opacity-75 rounded-lg shadow-lg max-w-sm mx-auto cursor-pointer"
       initial={{ scale: 0 }}
       whileInView={{ scale: 1 }}
       transition={{ duration: 0.4, ease: 'easeInOut', delay: 0.4 }}
+      whileHover={{ scale: 1.05 }}
     >
       {/* Image Slider */}
       <motion.div
-        className="w-full h-48 bg-primary rounded-lg overflow-hidden mb-4"
+        className="w-full h-40 md:h-48 bg-primary rounded-lg overflow-hidden mb-4"
         initial={{ x: -300 }}
         animate={{ x: 0 }}
         transition={{ duration: 0.8 }}
@@ -47,7 +48,7 @@ const ProjectCard: FC = () => {
 
       <div className="p-4">
         <motion.h2
-          className="text-lg font-bold text-slate-200 mb-2"
+          className="text-lg md:text-xl font-medium text-slate-200 mb-2"
           initial={{ y: -20 }}
           whileInView={{ y: 0 }}
           transition={{ duration: 0.5, ease: 'easeInOut', delay: 0.4 }}
@@ -57,7 +58,7 @@ const ProjectCard: FC = () => {
 
         {/* Description */}
         <motion.div
-          className="text-slate-300 mb-4"
+          className="text-slate-300 mb-4 text-sm md:text-base"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.5, ease: 'easeInOut', delay: 0.4 }}
@@ -73,7 +74,7 @@ const ProjectCard: FC = () => {
 
         {/* Tech Stack */}
         <motion.div
-          className="flex justify-start items-center gap-5 mb-4"
+          className="flex justify-start items-center gap-1 mb-2 md:mb-4"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.5, ease: 'easeInOut', delay: 0.4 }}
@@ -84,10 +85,9 @@ const ProjectCard: FC = () => {
               xmlns="http://www.w3.org/2000/svg"
               x="0px"
               y="0px"
-              width={icon.width}
-              height={icon.height}
               viewBox="0 0 48 48"
               whileHover={{ scale: 1.2 }}
+              className={'w-9 h-9 md:w-10 md:h-10'}
             >
               <path fill="#000" d={icon.path}></path>
             </motion.svg>
@@ -96,21 +96,21 @@ const ProjectCard: FC = () => {
 
         {/* Buttons */}
         <motion.div
-          className="flex gap-5 mb-3"
+          className="flex gap-2 md:gap-5 mb-2 md:mb-4"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.5, ease: 'easeInOut', delay: 0.4 }}
         >
           <motion.a
             href="#"
-            className="bg-secondary text-sm font-medium text-slate-200 py-1 px-4 rounded-lg transition duration-300 hover:bg-opacity-80 flex gap-2 justify-center items-center ring-1"
-            whileHover={{ scale: 1.1 }}
+            className="bg-secondary text-xs md:text-sm font-medium text-slate-200 py-2 px-3 md:py-1 md:px-4 rounded-lg transition duration-300 hover:bg-opacity-80 flex gap-2 justify-center items-center ring-1"
+            whileHover={{ scale: 1.1 , backgroundColor: '#e2e8f0' , color : '#171717'}}
           >
             <AiOutlineGlobal size={20} fill='#06B6D4' /> Website
           </motion.a>
           <motion.a
             href="#"
-            className="bg-secondary text-sm font-medium text-slate-200 py-3 px-4 rounded-lg transition duration-300 hover:bg-opacity-80 flex gap-2 justify-center items-center bg-neutral-900"
+            className="bg-secondary text-xs md:text-sm font-medium text-slate-200 py-2 px-3 md:py-3 md:px-4 rounded-lg transition duration-300 hover:bg-opacity-80 flex gap-2 justify-center items-center bg-neutral-900"
             whileHover={{ scale: 1.1 }}
           >
             GitHub

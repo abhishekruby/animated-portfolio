@@ -4,17 +4,17 @@ import { motion } from 'framer-motion'
 import GreenTick from '../common/green-tick'
 
 
-function JourneyDetail() {
+function JourneyDetail({journeyKey}:{journeyKey:number}) {
     return (
         <motion.div
-            initial={{ opacity: 0, x : 400 }}
+            initial={{ opacity: 0, x : journeyKey % 2 === 0 ? 40: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{
-                duration: 0.5,
+                duration: 0.8,
                 ease: 'easeInOut',
                 delay: 0.5
             }}
-            className="w-2/5"
+            className="w-[90%] md:w-2/5"
         >
             {/* Logo */}
             <motion.div
@@ -31,7 +31,7 @@ function JourneyDetail() {
                         ease: 'easeInOut',
                     },
                 }}
-                className="relative flex items-center bg-slate-100 justify-center w-16 h-16 rounded-2xl overflow-hidden shadow-md mb-8"
+                className="relative flex items-center bg-slate-100 justify-center h-14 w-14 md:w-16 md:h-16 rounded-2xl shadow-md mb-5 md:mb-8"
             >
                 <Image
                     src="/amazon.png"
@@ -45,14 +45,14 @@ function JourneyDetail() {
                 />
             </motion.div>
             {/* JOB TITLE */}
-            <div className="bg-slate-100 text-neutral-900 p-3 text-2xl font-semibold rounded-b-lg rounded-s-lg mb-5">
+            <div className="bg-slate-100 text-neutral-900 p-2 md:p-3 text-base md:text-2xl font-semibold rounded-b-lg rounded-s-lg mb-2 md:mb-5">
                 Senior JavaScript Engineer
             </div>
             {/* JOB DESC */}
             {
                 Array(3).fill(0).map((_, index) => {
                     return (
-                        <div key={index} className="flex  gap-5 items-center justify-center p-3 text-lg italic text-slate-200">
+                        <div key={index} className="flex gap-2 md:gap-5 items-center justify-center p-2 md:p-3 text-sm md:text-lg italic text-slate-200">
                             {/* icon */}
                             <GreenTick />
                             I led web development, offering expertise in JavaScript
@@ -64,15 +64,14 @@ function JourneyDetail() {
 
 
             {/* JOB DATE */}
-            <div className="p-3 text-cyan-500 text-lg font-semibold">
+            <div className="p-2 md:p-3 text-cyan-500 text-sm md:text-lg font-semibold">
                 2024 - Present
             </div>
             {/* JOB COMPANY */}
-            <div className="p-1 px-2 rounded text-neutral-900 bg-slate-100 text-lg font-semibold w-fit mt-2">
+            <div className="p-1 px-2 rounded text-neutral-900 bg-slate-100 text-sm md:text-lg font-semibold w-fit mt-2">
                 Apple
             </div>
         </motion.div>
-
     )
 }
 

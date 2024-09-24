@@ -1,28 +1,27 @@
 'use client'
-import { ReactNode, useRef } from 'react';
+
+import { ReactNode, useEffect, useRef, useState } from 'react';
 import { AnimatePresence } from "framer-motion";
 import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
-import { useState, useEffect } from "react";
 
 import CustomScrollbar from './ui/custom-scroll-bar';
-import HamsterWheelLoader from './loader/hamster-wheel-loader';
+import HamsterWheelLoader from "@components/loader/hamster-wheel-loader";
 
 const TransitionProvider = ({ children }: { children: ReactNode }) => {
   const pathName = usePathname();
-
   const ScrollbarRef = useRef(null);
-  const [loading, setLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 2000);
-    return () => clearTimeout(timer);
-  }, []);
+  // Simulate a 2-second delay before loading finishes
+  setTimeout(() => {
+    setIsLoading(false);
+  }, 2000);
 
   return (
     <AnimatePresence mode="wait">
-      {loading ? (
-        <HamsterWheelLoader/>
+      {isLoading ? (
+        <HamsterWheelLoader />
       ) : (
         <div
           key={pathName}
@@ -49,4 +48,3 @@ const TransitionProvider = ({ children }: { children: ReactNode }) => {
 };
 
 export default TransitionProvider;
-

@@ -1,13 +1,27 @@
 "use client";
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import { useSearchParams } from 'next/navigation'
 
 function Contact() {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
 
-  const ref = useRef();
+  const ref = useRef<HTMLDivElement>(null);
   const formRef = useRef();
+
+  const searchParams = useSearchParams()
+  useEffect(() => {
+    const search = searchParams.get('scroll')
+    if(search == 'contact' && ref.current){
+      setTimeout(() => {
+        window.scrollTo({
+          top: ref.current.offsetTop,
+          behavior: "smooth",
+        })
+      }, 1500)
+    }
+  }, []);
 
   const sendEmail = (e: any) => {
     e.preventDefault();

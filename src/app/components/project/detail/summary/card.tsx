@@ -1,0 +1,15 @@
+import React from 'react'
+
+// Card Component
+const Card = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+    ({ className, ...props }, ref) => (
+      <div
+        ref={ref}
+        className={`rounded-lg border bg-card text-card-foreground shadow-sm ${className}`}
+        {...props}
+      />
+    )
+  )
+  Card.displayName = "Card"
+
+export default Card

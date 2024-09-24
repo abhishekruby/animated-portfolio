@@ -1,12 +1,16 @@
 import { FC, useState } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation'
 
 import { AiOutlineGlobal } from "react-icons/ai";
 import { FaGithub } from "react-icons/fa";
 import GlowingLine from '../common/glowing-line';
 
 const ProjectCard: FC = () => {
+
+  const router = useRouter();
+
   const [techStack, setTechStack] = useState([
     {
       id: 1,
@@ -35,6 +39,7 @@ const ProjectCard: FC = () => {
       whileInView={{ scale: 1 }}
       transition={{ duration: 0.4, ease: 'easeInOut', delay: 0.4 }}
       whileHover={{ scale: 1.05 }}
+      onClick={() => router.push('/project/slug/')}
     >
       {/* Image Slider */}
       <motion.div

@@ -1,10 +1,11 @@
 "use client";
 
-import React, { lazy } from "react";
+import React, { lazy, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "@app/lib/utils";
 import Footer from "@components/footer/footer";
 import Navbar from "@components/navbar/navbar";
+import { useFetchAndDisplayProfileData } from "./utils/profileDataUtils";
 
 const Spotlight = lazy(() => import("@components/home/spotlight"));
 const About = lazy(() => import("@components/about/about"));
@@ -13,6 +14,9 @@ const Contribution = lazy(() => import("@components/contribution/contribution"))
 const Contact = lazy(() => import("@components/contact/contact"));
 
 const Homepage = () => {
+    const res = useFetchAndDisplayProfileData();
+    console.log(res,'home');
+    
 
   return (
     <AnimatePresence>

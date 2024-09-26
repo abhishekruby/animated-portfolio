@@ -5,6 +5,7 @@ import AnimatedCursor from "react-animated-cursor";
 
 import "@/styles/globals.css";
 import TransitionProvider from "@components/transition-provider";
+import StoreProvider from "./StoreProvider";
 
 const roboto = Roboto({ subsets: ["latin"], weight: ["100", "300", "400", "500", "700", "900"], });
 
@@ -22,7 +23,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={roboto.className + "bg-slate-900"} suppressHydrationWarning={true}>
         {/* <AnimatedCursor innerSize={20} color='6, 182, 212' /> */}
+          <StoreProvider>
           <TransitionProvider>{children}</TransitionProvider>
+          </StoreProvider>
       </body>
     </html>
   );

@@ -1,45 +1,55 @@
-import React from 'react'
-import { motion } from 'framer-motion'
-import SkillIcon from './skill-icon'
-import GlowingLine from '../common/glowing-line'
+'use client'
 
-function SkillBox({ title }: { title: string }) {
+import React from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+
+
+interface SkillObject {
+  name: string
+  level: number
+  category: string
+}
+
+interface SkillBoxProps {
+  filteredSkills: SkillObject[];
+  setSelectedSkill: (skill: SkillObject) => void;
+}
+
+const SkillBox: React.FC<SkillBoxProps> = ({filteredSkills,setSelectedSkill}) => {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7, ease: 'easeInOut' }}
-      className="w-full h-fit p-10"
-    >
-      <motion.div
-        initial={{ opacity: 0, x: -50 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.7, ease: 'easeInOut', delay: 0.2 }}
-        className="w-full p-4 text-center"
-      >
-        <h2 className=" text-2xl md:text-3xl lg:text-4xl text-slate-200 font-medium">{title}</h2>
-      </motion.div>
-      <GlowingLine className='h-0.5 w-full md:w-1/2' />
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.7, ease: 'easeInOut', delay: 0.6 }}
-        className="p-2 px-1 md:p-5 md:px-16 flex flex-wrap items-center justify-center  gap-2 md:gap-5 lg:gap-6"
-      >
-        {Array(10).fill("").map((value, key) => {
-          return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+    <AnimatePresence>
+      {filteredSkills.map(skill => (
+        <motion.div
+          key={skill.name}
+          layout
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.8 }}
+          transition={{ duration: 0.5 }}
+          className="bg-gray-800 p-6 rounded-lg cursor-pointer hover:shadow-lg transition-shadow duration-300"
+          onClick={() => {
+            setSelectedSkill(skill);
+            document.body.style.overflow = 'hidden';
+          }}
+        >
+          <h3 className="text-xl font-semibold text-white mb-2">{skill.name}</h3>
+          <div className="w-full bg-gray-700 rounded-full h-2.5 mb-4">
             <motion.div
-              initial={{ opacity: 0, scale: 0.5 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.7, ease: 'easeInOut', }}
-              key={key}
-            >
-              <SkillIcon />
-            </motion.div>
-          );
-        })}
-      </motion.div>
-    </motion.div>
+              className="bg-gradient-to-r from-blue-500 to-purple-600 h-2.5 rounded-full"
+              initial={{ width: 0 }}
+              animate={{ width: `${skill.level}%` }}
+              transition={{ duration: 1, delay: 0.2 }}
+            />
+          </div>
+          <div className="flex justify-between items-center">
+            <span className="text-sm text-gray-400">{skill.category}</span>
+            <span className="text-sm font-medium text-blue-400">{skill.level}%</span>
+          </div>
+        </motion.div>
+      ))}
+    </AnimatePresence>
+  </div>
   )
 }
 

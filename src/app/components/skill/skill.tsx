@@ -2,10 +2,40 @@ import React, { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 
 import HeadText from '../common/head-text'
+import SkillCategory from './skill-category'
 import ScrollSvg from '../ui/scroll-svg'
+import DetailPopUp from './detail-popup'
 import SkillBox from './skill-box'
 
+
+interface SkillObject {
+  name: string
+  level: number
+  category: string
+}
+
+const skills: SkillObject[] = [
+  { name: "React", level: 90, category: "Frontend" },
+  { name: "TypeScript", level: 85, category: "Languages" },
+  { name: "Node.js", level: 80, category: "Backend" },
+  { name: "GraphQL", level: 75, category: "API" },
+  { name: "CSS/SASS", level: 85, category: "Frontend" },
+  { name: "Python", level: 70, category: "Languages" },
+  { name: "Docker", level: 65, category: "DevOps" },
+  { name: "AWS", level: 60, category: "Cloud" },
+  { name: "MongoDB", level: 75, category: "Database" },
+  { name: "Redux", level: 80, category: "Frontend" },
+]
+
+const categories = Array.from(new Set(skills.map(skill => skill.category)))
 function Skill() {
+  const [selectedSkill, setSelectedSkill] = useState<SkillObject | null>(null)
+  const [hoveredCategory, setHoveredCategory] = useState<string | null>(null)
+
+  const filteredSkills = hoveredCategory
+    ? skills.filter(skill => skill.category === hoveredCategory)
+    : skills
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 100 }}
@@ -25,12 +55,13 @@ function Skill() {
         initial={{ opacity: 0, scale: 0.5 }}
         whileInView={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5, ease: 'easeInOut', delay: 0.4 }}
-        className="w-full grid grid-cols-1 lg:grid-cols-2 h-full rounded-2xl bg-slate-800 bg-opacity-50"
+        className="w-full h-full rounded-2xl bg-slate-800 bg-opacity-50"
       >
-        <SkillBox title={"Front-End Tools"} />
-        <SkillBox title={"Back-End Tools"} />
-        <SkillBox title={"Devops Tools"} />
-        <SkillBox title={"Other Tools"} />
+        <div className="w-full max-w-full mx-auto p-8 bg-gradient-to-br from-slate-800 to-slate-900 rounded-xl shadow-2xl">
+          <SkillCategory categories={categories} setHoveredCategory={setHoveredCategory} />
+          <SkillBox filteredSkills={filteredSkills} setSelectedSkill={setSelectedSkill} />
+          <DetailPopUp selectedSkill={selectedSkill} setSelectedSkill={setSelectedSkill} />
+        </div>
       </motion.div>
       {/* Scroll Svg */}
       <motion.div

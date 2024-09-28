@@ -15,7 +15,12 @@ export const makeStore = () => {
     reducer: {
       profileData: persistedReducer,
     },
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware({
+        serializableCheck: false,
+      }),
   });
+
   const persistor = persistStore(store);
   return { store, persistor };
 };

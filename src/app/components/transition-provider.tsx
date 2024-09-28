@@ -3,13 +3,11 @@
 import { ReactNode, useEffect, useRef, useState } from 'react';
 import { AnimatePresence } from "framer-motion";
 import { motion } from "framer-motion";
-import { usePathname } from "next/navigation";
 
 import CustomScrollbar from './ui/custom-scroll-bar';
 import HamsterWheelLoader from "@components/loader/hamster-wheel-loader";
 
 const TransitionProvider = ({ children }: { children: ReactNode }) => {
-  const pathName = usePathname();
   const ScrollbarRef = useRef(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -24,7 +22,6 @@ const TransitionProvider = ({ children }: { children: ReactNode }) => {
         <HamsterWheelLoader />
       ) : (
         <div
-          key={pathName}
           className="w-full h-auto bg-slate-900 relative"
         >
           <motion.div

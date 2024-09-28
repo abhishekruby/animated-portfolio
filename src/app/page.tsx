@@ -5,7 +5,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "@app/lib/utils";
 import Footer from "@components/footer/footer";
 import Navbar from "@components/navbar/navbar";
-import { useFetchAndDisplayProfileData } from "./utils/profileDataUtils";
+import { useProfileData } from "./api/profile-data/profileDataApi";
+// import { useFetchAndDisplayProfileData } from "./utils/profileDataUtils";
 
 const Spotlight = lazy(() => import("@components/home/spotlight"));
 const About = lazy(() => import("@components/about/about"));
@@ -15,6 +16,9 @@ const Contact = lazy(() => import("@components/contact/contact"));
 
 const Homepage = () => {
     // useFetchAndDisplayProfileData();
+    const { data, error, isLoading } = useProfileData();
+    console.log(data, error, isLoading,'status');
+    
   return (
     <AnimatePresence>
           <motion.div

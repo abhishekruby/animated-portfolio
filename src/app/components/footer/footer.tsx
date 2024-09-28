@@ -54,9 +54,9 @@ export default function Component() {
           transition={{ duration: 0.5, ease: 'easeInOut', delay: 0.4 }}
           className="flex flex-col items-center justify-center gap-4 md:flex-row sm:w-1/2 md:w-2/3 lg:w-3/4 xl:w-4/5"
         >
-          {links.map((link) => (
+          {links.map((link,index) => (
             <Link
-              key={link.id}
+              key={index}
               to={link.id}
               smooth={true}
               duration={500}

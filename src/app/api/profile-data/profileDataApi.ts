@@ -1,14 +1,43 @@
-import axiosInstance from '@api/axios-config/axiosInstance';
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import { useQuery } from 'react-query';
+import axiosInstance  from '@api/axios-config/axiosInstance';
+import { useAppDispatch } from '@lib/hooks';
+import { setProfileData } from '@lib/features/profile-data/profileDataSlice';
 
-export const fetchProfileDetail = createAsyncThunk( 'todos/1', async () => {
-  try {
-    const response = await axiosInstance.get('todos/1/');
-    const data = response.data;
-    console.log(data,'data')
-    return data;
-  } catch (error) {
-    console.error('Error fetching profile data:', error);
-    return error;
+const fetchProfileData = async () => {
+  let query = `
+  { 
+    allProjects 
+    { edges 
+      { node 
+        { 
+          id 
+          title 
+          shortText 
+          keyPoints 
+          { 
+            text 
+          } 
+          techStacks
+          {
+            title
+          } 
+          websiteUrl 
+          githubUrl 
+        } 
+      }
+    }
   }
-})
+  `;
+  const formattedQuery = query.trim().replace(/\n/g, '').replace(/\s+/g, ' ');
+  const encodedQuery = encodeURIComponent(formattedQuery);
+  return await axiosInstance.get(`project/?query=${encodedQuery}`);
+};
+
+export const useProfileData = () => {
+  const dispatch = useAppDispatch();
+  return useQuery('profileData', fetchProfileData, {
+    onSuccess: (data) => {
+      dispatch(setProfileData(data.data.data.allProjects.edges));
+    },
+  });
+};

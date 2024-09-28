@@ -9,7 +9,6 @@ interface ProfileData {
 
 export function useFetchAndDisplayProfileData() {
   const dispatch = useAppDispatch();
-  dispatch(fetchProfileDetail());
 
   // // Assuming fetchProfileData returns a Promise resolving to ProfileData
   const profileData: ProfileData | undefined = useAppSelector(

@@ -38,7 +38,7 @@ const Navbar = () => {
           animate={{ y: 0 }}
           exit={{ y: -100 }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
-          className="fixed top-5 z-50 w-full flex items-center"
+          className="fixed top-5 z-40 w-full flex items-center"
         >
           <nav className="w-full flex justify-center gap-[15%] items-center py-4 lg:gap-12 lg:px-20 xl:gap-24 xl:px-48">
             {/* LINKS */}
@@ -46,7 +46,7 @@ const Navbar = () => {
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, ease: "easeInOut" }}
-              className="flex cursor-pointer gap-2 ring-1 ring-slate-600 bg-slate-700 rounded-full p-2 md:p-3 lg:p-4 justify-around w-fit"
+              className="flex cursor-pointer gap-2 ring-1 ring-slate-600 bg-gradient-to-br from-slate-900 to-slate-800 shadow-2xl rounded-full p-2 md:p-3 lg:p-4 justify-around w-fit"
             >
               {links.map((link) => (
                 <li key={link.title}>

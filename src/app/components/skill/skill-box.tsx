@@ -27,7 +27,7 @@ const SkillBox: React.FC<SkillBoxProps> = ({filteredSkills,setSelectedSkill}) =>
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.8 }}
           transition={{ duration: 0.5 }}
-          className="bg-gray-800 p-6 rounded-lg cursor-pointer hover:shadow-lg transition-shadow duration-300"
+          className="bg-gradient-to-br from-slate-900 to-slate-950 p-6 rounded-lg cursor-pointer hover:shadow-lg transition-shadow duration-300"
           onClick={() => {
             setSelectedSkill(skill);
             document.body.style.overflow = 'hidden';

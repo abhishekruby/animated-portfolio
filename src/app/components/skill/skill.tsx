@@ -57,7 +57,7 @@ function Skill() {
         transition={{ duration: 0.5, ease: 'easeInOut', delay: 0.4 }}
         className="w-full h-full rounded-2xl bg-slate-800 bg-opacity-50"
       >
-        <div className="w-full max-w-full mx-auto p-8 bg-gradient-to-br from-slate-800 to-slate-900 rounded-xl shadow-2xl">
+        <div className="w-full max-w-full mx-auto p-8 bg-gradient-to-br from-slate-900 to-slate-800 rounded-xl shadow-2xl">
           <SkillCategory categories={categories} setHoveredCategory={setHoveredCategory} />
           <SkillBox filteredSkills={filteredSkills} setSelectedSkill={setSelectedSkill} />
           <DetailPopUp selectedSkill={selectedSkill} setSelectedSkill={setSelectedSkill} />

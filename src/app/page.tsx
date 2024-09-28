@@ -14,10 +14,7 @@ const Contribution = lazy(() => import("@components/contribution/contribution"))
 const Contact = lazy(() => import("@components/contact/contact"));
 
 const Homepage = () => {
-    const res = useFetchAndDisplayProfileData();
-    console.log(res,'home');
-    
-
+    // useFetchAndDisplayProfileData();
   return (
     <AnimatePresence>
           <motion.div

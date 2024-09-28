@@ -1,70 +1,104 @@
 import React, { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { X, CheckCircle, AlertCircle, Info } from 'lucide-react'
+import { CheckCircle, XCircle, Info, X } from 'lucide-react'
 
 type NotificationType = 'success' | 'error' | 'info'
 
-interface PopupNotificationProps {
-  type: NotificationType
-  message: string
+interface NotificationProps {
+  type?: NotificationType
+  title?: string
+  description?: string
   duration?: number
-  onClose: () => void
 }
 
 const iconMap = {
   success: CheckCircle,
-  error: AlertCircle,
+  error: XCircle,
   info: Info,
 }
 
-const bgColorMap = {
+const colorMap = {
   success: 'bg-green-500',
   error: 'bg-red-500',
   info: 'bg-blue-500',
 }
 
-const PopupNotification: React.FC<PopupNotificationProps> = ({ type='success', message='hii', duration = 5000, onClose }) => {
-  const [isVisible, setIsVisible] = useState(true)
-  const Icon = iconMap[type]
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsVisible(false)
-    }, duration)
-
-    return () => clearTimeout(timer)
-  }, [duration])
-
-  const handleClose = () => {
-    setIsVisible(false)
-    onClose()
-  }
-
-  return (
-    <AnimatePresence>
-      {isVisible && (
-        <motion.div
-          initial={{ opacity: 0, y: -50, x: 50 }}
-          animate={{ opacity: 1, y: 0, x: 0 }}
-          exit={{ opacity: 0, y: -50, x: 50 }}
-          transition={{ type: 'spring', stiffness: 500, damping: 40 }}
-          className={`fixed top-4 right-4 w-72 ${bgColorMap[type]} text-white p-4 rounded-lg shadow-lg z-50 flex items-start`}
-        >
-          <Icon className="w-5 h-5 mr-3 mt-0.5 flex-shrink-0" />
-          <div className="flex-grow">
-            <p className="font-semibold">{message}</p>
-          </div>
-          <button
-            onClick={handleClose}
-            className="ml-2 text-white hover:text-gray-200 transition-colors duration-200"
-            aria-label="Close notification"
-          >
-            <X className="w-5 h-5" />
-          </button>
-        </motion.div>
-      )}
-    </AnimatePresence>
-  )
+const defaultTitles = {
+  success: 'Success',
+  error: 'Error',
+  info: 'Information',
 }
 
-export default PopupNotification
+const defaultDescriptions = {
+  success: 'The operation was completed successfully.',
+  error: 'An error occurred. Please try again.',
+  info: 'Here\'s some information you might find useful.',
+}
+
+export default function Notification({
+  type = 'success',
+  title,
+  description,
+  duration = 5000,
+}: NotificationProps) {
+  const [progress, setProgress] = useState(100)
+  const [displayNotification, setDisplayNotification] = useState(true)
+  const Icon = iconMap[type]
+
+  const finalTitle = title || defaultTitles[type]
+  const finalDescription = description || defaultDescriptions[type]
+
+  useEffect(() => {
+    let timer: number | undefined
+    if (duration > 0) {
+      timer = window.setInterval(() => {
+        setProgress((oldProgress) => {
+          if (oldProgress === 0) {
+            clearInterval(timer!)
+            return 0
+          }
+          const newProgress = oldProgress - 100 / (duration / 100)
+          return newProgress > 0 ? newProgress : 0
+        })
+      }, 100)
+    }
+
+    return () => {
+      if (timer) {
+        clearInterval(timer)
+      }
+    }
+  }, [duration])
+
+  useEffect(() => {
+    if (progress === 0) {
+      setDisplayNotification(false)
+    }
+  }, [progress])
+
+  return displayNotification && (
+    <div className="fixed top-5 right-5 z-50 w-full max-w-sm overflow-hidden rounded-lg bg-gray-800 shadow-lg">
+      <div
+        className={`absolute -bottom-2 -left-2 -right-2 -z-10 h-4 rounded-lg ${colorMap[type]} opacity-30`}
+      ></div>
+      <div className="flex items-start space-x-4 p-4">
+        <div className={`rounded-full p-1 ${colorMap[type]}`}>
+          <Icon className="h-5 w-5 text-gray-900" />
+        </div>
+        <div className="flex-1">
+          <h3 className="font-semibold text-gray-100">{finalTitle}</h3>
+          <p className="mt-1 text-sm text-gray-300">{finalDescription}</p>
+        </div>
+        <button
+          onClick={()=>setDisplayNotification(false)}
+          className="text-gray-400 hover:text-gray-200 focus:outline-none"
+        >
+          <X className="h-5 w-5" />
+        </button>
+      </div>
+      <div
+        className={`h-1 ${colorMap[type]}`}
+        style={{ width: `${progress}%` }}
+      ></div>
+    </div>
+  )
+}

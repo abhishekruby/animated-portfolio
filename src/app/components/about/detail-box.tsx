@@ -7,7 +7,7 @@ function DetailBox() {
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.5, ease: 'easeInOut' }}
-      className="h-1/2 px-8 py-12 flex flex-col gap-5 lg:gap-8 justify-center items-center rounded-tl-2xl rounded-br-2xl bg-gradient-to-br from-slate-800 to-neutral-900 shadow-2xl"
+      className="h-1/2 px-8 py-12 flex flex-col gap-5 lg:gap-8 justify-center items-center rounded-tl-2xl rounded-br-2xl bg-gradient-to-br from-slate-800 to-slate-900 shadow-2xl"
     >
       {
         Array(3).fill(1).map((_, index) => (

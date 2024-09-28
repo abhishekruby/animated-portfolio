@@ -11,12 +11,12 @@ import HamsterWheelLoader from "@components/loader/hamster-wheel-loader";
 const TransitionProvider = ({ children }: { children: ReactNode }) => {
   const pathName = usePathname();
   const ScrollbarRef = useRef(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   // Simulate a 2-second delay before loading finishes
-  setTimeout(() => {
-    setIsLoading(false);
-  }, 2000);
+  // setTimeout(() => {
+  //   setIsLoading(false);
+  // }, 2000);
 
   return (
     <AnimatePresence mode="wait">

@@ -26,4 +26,4 @@ const profileDataSlice = createSlice({
 });
 
 export const { setProfileData, clearProfileData } = profileDataSlice.actions;
-export default profileDataSlice.reducer;
+export default profileDataSlice;

@@ -1,7 +1,7 @@
 import { useQuery } from 'react-query';
 import axiosInstance  from '@api/axios-config/axiosInstance';
-import { useAppDispatch } from '@lib/hooks';
-import { setProfileData } from '@lib/features/profile-data/profileDataSlice';
+import { useAppDispatch } from '@store/hooks';
+import { setProfileData } from '@/src/app/store/features/profile/profileDataSlice';
 
 const fetchProfileData = async () => {
   let query = `

@@ -4,7 +4,7 @@ import React ,{ useRef } from 'react'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { AppStore, makeStore } from '@lib/store'
+import { AppStore, makeStore } from '@/src/app/store/store'
 
 export default function StoreProvider({
   children,

@@ -5,7 +5,7 @@ import AnimatedCursor from "react-animated-cursor";
 
 import "@/styles/globals.css";
 import TransitionProvider from "@components/transition-provider";
-import StoreProvider from "./StoreProvider";
+import StoreProvider from "@app/store/StoreProvider";
 
 const roboto = Roboto({ subsets: ["latin"], weight: ["100", "300", "400", "500", "700", "900"], });
 

@@ -5,8 +5,9 @@ import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "@app/lib/utils";
 import Footer from "@components/footer/footer";
 import Navbar from "@components/navbar/navbar";
-import { useProfileData } from "./api/profile-data/profileDataApi";
-// import { useFetchAndDisplayProfileData } from "./utils/profileDataUtils";
+import { useProjectData } from "@api/project/get/projectDataApi";
+import { useAllProjectData } from "./api/project/get/allProjectDataApi";
+import { useAllContributionProjectData } from "./api/project/get/contributionProjectDataApi";
 
 const Spotlight = lazy(() => import("@components/home/spotlight"));
 const About = lazy(() => import("@components/about/about"));
@@ -15,9 +16,25 @@ const Contribution = lazy(() => import("@components/contribution/contribution"))
 const Contact = lazy(() => import("@components/contact/contact"));
 
 const Homepage = () => {
-    // useFetchAndDisplayProfileData();
-    const { data, error, isLoading } = useProfileData();
-    console.log(data, error, isLoading,'status');
+    // const {
+    //   data: profileData,
+    //   error: profileError,
+    //   isLoading: profileIsLoading,
+    // } = useProjectData();
+    // console.log(profileData, profileError,profileIsLoading , 'Projectstatus')
+
+    const {
+      data: projectData,
+      error: projectError,
+      isLoading: projectIsLoading,
+    } = useAllProjectData();
+    console.log(projectData, projectError,projectIsLoading , 'Projectstatus')
+
+    // const {
+    //   data: contributionData,
+    //   error: contributionError,
+    //   isLoading: contributionIsLoading,
+    // } = useAllContributionProjectData();
     
   return (
     <AnimatePresence>

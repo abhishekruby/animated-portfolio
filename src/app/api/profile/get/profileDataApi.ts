@@ -5,39 +5,38 @@ import { setProfileData } from '@/src/app/store/features/profile/profileDataSlic
 
 const fetchProfileData = async () => {
   let query = `
-  { 
-    allProjects 
-    { edges 
-      { node 
-        { 
-          id 
-          title 
-          shortText 
-          keyPoints 
-          { 
-            text 
-          } 
-          techStacks
-          {
-            title
-          } 
-          websiteUrl 
-          githubUrl 
-        } 
+{
+  allProfiles {
+    edges {
+      node {
+        id
+        technicalExpertise
+        shortIntro
+        resume
+        photo
+        email
+        address
+        phoneNumber
+        keyPoints {
+          id
+          text
+          priority
+        }
       }
     }
   }
+}
   `;
   const formattedQuery = query.trim().replace(/\n/g, '').replace(/\s+/g, ' ');
   const encodedQuery = encodeURIComponent(formattedQuery);
-  return await axiosInstance.get(`project/?query=${encodedQuery}`);
+  return await axiosInstance.get(`profile/?query=${encodedQuery}`);
 };
 
 export const useProfileData = () => {
   const dispatch = useAppDispatch();
   return useQuery('profileData', fetchProfileData, {
     onSuccess: (data) => {
-      dispatch(setProfileData(data.data.data.allProjects.edges));
+      dispatch(setProfileData(data.data.data?.allProfiles?.edges[0]?.node));
     },
   });
 };

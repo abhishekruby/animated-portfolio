@@ -4,10 +4,12 @@ import { motion } from "framer-motion";
 import { FlipWords } from '@components/ui/flip-words'
 import SocialIcon from '@components//common/social-icons'
 import { Link } from 'react-scroll';
-
+import { useAppSelector } from '@store/hooks';
 
 const IntroBox = () => {
-  const words = ["Full Stack Developer", "Backend Specialist", "Freelancer", "Problem Solver"];
+
+  const profileData = useAppSelector((state: any) => state.data?.profileData?.data);
+  const { technicalExpertise, shortIntro, resume } = profileData
 
   return (
     <motion.div
@@ -24,7 +26,7 @@ const IntroBox = () => {
         transition={{ duration: 1, ease: "easeOut", delay: 0.5 }}
       >
         I&apos;m {" "}Abhishek Ruby <br />
-        <FlipWords words={words} className="text-[#06B6D4] mt-4 text-3xl md:text-5xl lg:text-6xl " />
+        <FlipWords words={technicalExpertise} className="text-[#06B6D4] mt-4 text-3xl md:text-5xl lg:text-6xl " />
       </motion.h1>
 
       {/* DESC */}
@@ -34,10 +36,7 @@ const IntroBox = () => {
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 1, ease: "easeOut", delay: 0.4 }}
       >
-        Welcome to my digital, where innovation and converge. With a keen
-        eye for aesthetics and a mastery of code, my portfolio showcases a
-        diverse collection of projects that reflect my commitment to
-        excellence.
+       {shortIntro}
       </motion.p>
 
       {/* BUTTONS */}
@@ -62,13 +61,16 @@ const IntroBox = () => {
           </Link>
         </motion.button>
 
-        <motion.button
+        <motion.a
+          target={'_blank'}
+          href={resume}
+          download
           whileHover={{ scale: 1.1 }}
           transition={{ duration: 0.3 }}
-          className={'p-4 px-3 lg:px-6 rounded-lg ring-1 text-neutral-200 ring-neutral-300 font-semibold hover:bg-neutral-200 hover:text-neutral-900'}
+          className={'p-4 px-3 lg:px-6 rounded-lg ring-1 cursor-pointer text-neutral-200 ring-neutral-300 font-semibold hover:bg-neutral-200 hover:text-neutral-900'}
         >
-          <a href={'#'}>Download CV</a>
-        </motion.button>
+          Download CV
+        </motion.a>
       </motion.div>
 
       {/* SOCIAL */}

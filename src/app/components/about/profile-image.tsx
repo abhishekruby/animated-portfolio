@@ -1,9 +1,12 @@
 import Image from 'next/image'
 import React from 'react'
 import { motion } from 'framer-motion';
+import { useAppSelector } from '@store/hooks';
 
 
 function ProfileImage() {
+  const { photo } = useAppSelector((state: any) => state.data?.profileData?.data);
+
   return (
     <motion.div
       initial={{ scale: 0.9 }}
@@ -22,7 +25,7 @@ function ProfileImage() {
       className="relative flex items-center justify-center max-w-1/2 rounded-2xl overflow-hidden shadow-md"
     >
       <Image
-        src="/profile.png"
+        src={photo}
         alt="Profile"
         className="w-full h-auto object-cover transition-all duration-300 "
         width={500}

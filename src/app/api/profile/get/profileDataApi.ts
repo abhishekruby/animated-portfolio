@@ -3,10 +3,11 @@ import axiosInstance  from '@api/axios-config/axiosInstance';
 import { useAppDispatch } from '@store/hooks';
 import { setProfileData } from '@/src/app/store/features/profile/profileDataSlice';
 
+
 const fetchProfileData = async () => {
   let query = `
 {
-  allProfiles {
+  allProfiles{
     edges {
       node {
         id
@@ -22,6 +23,37 @@ const fetchProfileData = async () => {
           text
           priority
         }
+        socialMedia{
+          id
+          priority
+          platform
+          url
+        }
+        skills{
+          name
+          progress
+          category{
+          id
+          name
+          priority
+          }
+          priority
+          icon
+        }
+        experiences{
+          id
+          companyLogo
+          companyName
+          designation
+          keyPoints{
+            id
+            priority
+            text
+          }
+          url
+          startDate
+          endDate
+        }
       }
     }
   }
@@ -29,7 +61,10 @@ const fetchProfileData = async () => {
   `;
   const formattedQuery = query.trim().replace(/\n/g, '').replace(/\s+/g, ' ');
   const encodedQuery = encodeURIComponent(formattedQuery);
-  return await axiosInstance.get(`profile/?query=${encodedQuery}`);
+  const requestBody = {
+    query: encodedQuery,
+  };
+  return await axiosInstance.post(`profile/graphql/`,requestBody);
 };
 
 export const useProfileData = () => {

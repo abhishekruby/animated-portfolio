@@ -1,4 +1,3 @@
-import { useProfileData } from '@api/profile/get/profileDataApi';
 import { createSlice } from '@reduxjs/toolkit';
 
 interface ProfileDataState {

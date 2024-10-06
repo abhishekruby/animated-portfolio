@@ -1,6 +1,6 @@
 'use client'
 
-import { ReactNode, useEffect, useRef, useState } from 'react';
+import { ReactNode, useRef } from 'react';
 import { AnimatePresence } from "framer-motion";
 import { motion } from "framer-motion";
 
@@ -9,7 +9,9 @@ import HamsterWheelLoader from "@components/loader/hamster-wheel-loader";
 import { useProfileData } from '../api/profile/get/profileDataApi';
 import GlobalErrorPage from '../global-error';
 
+
 const TransitionProvider = ({ children }: { children: ReactNode }) => {
+
   const ScrollbarRef = useRef(null);
 
   const { data, error, isLoading } = useProfileData()

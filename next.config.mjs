@@ -8,6 +8,17 @@ const nextConfig = {
       },
     ],
   },
+  env: {
+    BASE_URL: process.env.BASE_URL,
+  },
+  async rewrites() {
+    return [
+      {
+        source: "/api/:path*",
+        destination: `${process.env.BASE_URL}/api/:path*`,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

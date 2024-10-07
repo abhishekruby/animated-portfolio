@@ -4,24 +4,14 @@ import { combineReducers } from "redux";
 import createWebStorage from "redux-persist/lib/storage/createWebStorage";
 
 import profileDataSlice from "@store/features/profile/profileDataSlice";
-import allProjectDataSlice from "@store/features/project/allProjectDataSlice";
 import projectDataSlice from "@store/features/project/projectDataSlice";
-import contributionProjectDataSlice from "@store/features/project/contributionProjectDataSlice";
 
 
-const createNoopStorage = () => {
-  return {
-    getItem(_key: any) {
-      return Promise.resolve(null);
-    },
-    setItem(_key: any, value: any) {
-      return Promise.resolve(value);
-    },
-    removeItem(_key: any) {
-      return Promise.resolve();
-    },
-  };
-};
+const createNoopStorage = () => ({
+  getItem: (_key: string) => Promise.resolve(null),
+  setItem: (_key: string, value: any) => Promise.resolve(value),
+  removeItem: (_key: string) => Promise.resolve(),
+});
 
 const storage =
   typeof window === "undefined"
@@ -35,9 +25,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   profileData: profileDataSlice.reducer,
-  AllProjectData: allProjectDataSlice.reducer,
   projectData: projectDataSlice.reducer,
-  contributionProjectData: contributionProjectDataSlice.reducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -62,3 +50,4 @@ export type AppStore = ReturnType<typeof makeStore>["store"];
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<AppStore["getState"]>;
 export type AppDispatch = AppStore["dispatch"];
+

@@ -5,66 +5,84 @@ import { setProfileData } from '@/src/app/store/features/profile/profileDataSlic
 
 
 const fetchProfileData = async () => {
-  let query = `
-{
-  allProfiles{
-    edges {
-      node {
-        id
-        technicalExpertise
-        shortIntro
-        resume
-        photo
-        email
-        address
-        phoneNumber
-        keyPoints {
-          id
-          text
-          priority
-        }
-        socialMedia{
-          id
-          priority
-          platform
-          url
-        }
-        skills{
-          name
-          progress
-          category{
-          id
-          name
-          priority
-          }
-          priority
-          icon
-        }
-        experiences{
-          id
-          companyLogo
-          companyName
-          designation
-          keyPoints{
+  const query = `
+    query {
+      allProfiles {
+        edges {
+          node {
             id
-            priority
-            text
+            technicalExpertise
+            shortIntro
+            resume
+            photo
+            email
+            address
+            phoneNumber
+            keyPoints {
+              id
+              text
+              priority
+            }
+            socialMedia {
+              id
+              priority
+              platform
+              url
+            }
+            skills {
+              name
+              progress
+              category {
+                id
+                name
+                priority
+              }
+              priority
+              icon
+            }
+            experiences {
+              id
+              companyLogo
+              companyName
+              designation
+              keyPoints {
+                id
+                priority
+                text
+              }
+              url
+              startDate
+              endDate
+            }
+            projects{
+              id
+              priority
+              title
+              slug
+              shortText
+              image
+              techStacks {
+                id
+                priority
+                name
+              }
+              category {
+                id
+                name
+                priority
+              }
+              websiteUrl
+              githubUrl
+            }
           }
-          url
-          startDate
-          endDate
         }
       }
     }
-  }
-}
   `;
-  const formattedQuery = query.trim().replace(/\n/g, '').replace(/\s+/g, ' ');
-  const encodedQuery = encodeURIComponent(formattedQuery);
   const requestBody = {
-    query: encodedQuery,
+    query,
   };
-  return await axiosInstance.post(`profile/graphql/`,requestBody);
+  return await axiosInstance.post(`profile/graphql/`, requestBody);
 };
 
 export const useProfileData = () => {

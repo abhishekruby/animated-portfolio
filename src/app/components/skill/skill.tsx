@@ -9,9 +9,10 @@ import SkillBox from './skill-box'
 import { useAppSelector } from '@store/hooks'
 
 
-interface SkillObject {
+export interface SkillObject {
   id: string
   name: string
+  description: string
   progress: number
   priority: number
   category: {

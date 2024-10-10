@@ -1,19 +1,10 @@
 import React from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { SkillObject } from './skill'
 
 
 interface DetailProps{
-    selectedSkill : {
-      id: string
-      name: string
-      progress: number
-      priority: number
-      category: {
-        id: number
-        name: string
-        priority: number
-      }
-    }
+    selectedSkill : SkillObject | null
     setSelectedSkill : React.Dispatch<React.SetStateAction<DetailProps['selectedSkill'] | null>>
 }
 
@@ -43,7 +34,7 @@ function DetailPopUp({selectedSkill,setSelectedSkill}:DetailProps) {
             Proficiency: {selectedSkill.progress}% - {selectedSkill.category.name}
           </p>
           <p className="text-gray-400 mb-6">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            {selectedSkill.description}
           </p>
           <button
             onClick={() => {

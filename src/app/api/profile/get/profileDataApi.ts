@@ -31,6 +31,7 @@ const fetchProfileData = async () => {
             }
             skills {
               name
+              description
               progress
               category {
                 id

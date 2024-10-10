@@ -1,4 +1,5 @@
 'use client'
+
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
@@ -7,6 +8,22 @@ import ScrollSvg from '../ui/scroll-svg';
 import JourneyDetail from './journey-detail';
 import IconPointer from './icon-pointer';
 import { useAppSelector } from '../../store/hooks';
+
+
+export interface ExperienceListType{
+    id: string
+    companyLogo: string
+    companyName: string
+    designation: string
+    keyPoints: {
+        id: number 
+        text: string
+    }[]
+    url: string
+    startDate: string
+    endDate: string
+}
+
 
 function Journey() {
     const PathRef = useRef<HTMLDivElement>(null);
@@ -47,13 +64,13 @@ function Journey() {
                 transition={{ duration: 0.5, ease: 'easeInOut', delay: 0.4 }}
                 className="h-full rounded-2xl bg-slate-800 bg-opacity-50 p-5 md:p-10 lg:p-20 relative"
             >
-                {Array(4).fill(" ").map((value, key) => {
+                {experiences.map((data:ExperienceListType, key:number) => {
                     return (
                         <div
                             className={`flex justify-start ${key % 2 === 0 ? "md:justify-start" : "md:justify-end"} items-center relative z-10 mb-12 md:mb-0`}
                             key={key}
                         >
-                            <JourneyDetail journeyKey={key} />
+                            <JourneyDetail data={data} index={key} />
                             <IconPointer />
                         </div>
                     )

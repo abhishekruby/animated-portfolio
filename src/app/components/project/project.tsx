@@ -5,9 +5,34 @@ import ScrollSvg from '../ui/scroll-svg';
 import HeadText from '../common/head-text';
 import Navbar from './navbar';
 import ProjectCard from './project-card';
+import { useAppSelector } from '../../store/hooks';
+
+
+export interface ProjectDataType {
+    id: string
+    priority: number
+    title: string
+    slug: string
+    shortText: string
+    image: string
+    techStacks: {
+        id: number
+        priority: number
+        name: string
+        icon: string
+    }[]
+    category: {
+        id: number
+        name: string
+        priority: number
+    }
+    websiteUrl: string
+    githubUrl: string
+}
 
 function Project() {
-
+    const profileData = useAppSelector((state: any) => state.data?.profileData?.data);
+    const { projects } = profileData
     return (
         <motion.div
             id='project'
@@ -31,13 +56,13 @@ function Project() {
                 transition={{ duration: 0.5, ease: 'easeInOut', delay: 0.4 }}
                 className='flex flex-col px-5 gap-14 md:gap-24 justify-center items-center h-full w-full pt-5 md:pt-12'
             >
-                <Navbar/>
+                <Navbar />
                 <motion.div className='w-full flex flex-wrap gap-2 gap-y-10 md:gap-6 md:gap-y-20'>
                     {
-                        Array(5).fill("").map((value,index)=>{
+                        projects.map((data:ProjectDataType, index:number) => {
                             return (
 
-                                <ProjectCard key={index}/>
+                                <ProjectCard key={index} data={data} index={index} />
                             )
                         })
                     }

@@ -1,22 +1,21 @@
 'use client'
 
-import React, { useEffect, useRef, useState } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
 
 import HeadText from '../common/head-text';
 import ScrollSvg from '../ui/scroll-svg';
 import JourneyDetail from './journey-detail';
-import IconPointer from './icon-pointer';
 import { useAppSelector } from '../../store/hooks';
 
 
-export interface ExperienceListType{
+export interface ExperienceListType {
     id: string
     companyLogo: string
     companyName: string
     designation: string
     keyPoints: {
-        id: number 
+        id: number
         text: string
     }[]
     url: string
@@ -26,22 +25,17 @@ export interface ExperienceListType{
 
 
 function Journey() {
-    const PathRef = useRef<HTMLDivElement>(null);
-    const [pathRefHeight, setPathRefHeight] = useState(0);
-
-    // Get scroll progress
+    const containerRef = useRef(null)
     const { scrollYProgress } = useScroll({
-        target: PathRef,
-        offset: ['start start', 'end end'],
-    });
+        target: containerRef,
+        offset: ["start start", "end end"]
+    })
+    const scaleY = useSpring(scrollYProgress, {
+        stiffness: 100,
+        damping: 30,
+        restDelta: 0.001
+    })
 
-    const scrollY = useTransform(scrollYProgress, [0, 1], [0, pathRefHeight * 2 - 210]);
-
-    useEffect(() => {
-        if (PathRef.current) {
-            setPathRefHeight(PathRef.current.getBoundingClientRect().height);
-        }
-    }, [PathRef]);
     const { experiences } = useAppSelector((state: any) => state.data?.profileData?.data);
     return (
         <motion.div
@@ -63,42 +57,35 @@ function Journey() {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, ease: 'easeInOut', delay: 0.4 }}
                 className="h-full rounded-2xl bg-slate-800 bg-opacity-50 p-5 md:p-10 lg:p-20 relative"
+                ref={containerRef}
             >
-                {experiences.map((data:ExperienceListType, key:number) => {
+                {experiences.map((data: ExperienceListType, key: number) => {
                     return (
                         <div
                             className={`flex justify-start ${key % 2 === 0 ? "md:justify-start" : "md:justify-end"} items-center relative z-10 mb-12 md:mb-0`}
                             key={key}
                         >
-                            <JourneyDetail data={data} index={key} />
-                            <IconPointer />
+                            <JourneyDetail data={data} index={key} length={experiences.length} scrollYProgress={scrollYProgress} />
                         </div>
                     )
                 })}
 
-                {/* Static Scroll bar */}
-                <div ref={PathRef} className="absolute top-10 md:top-28 left-[90%] md:left-1/2 w-1 h-[90%] bg-slate-100 rounded-full overflow-hidden"></div>
-
-                {/* Moving Scroll Thumb */}
+                {/* line */}
+                <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-500 via-purple-500 to-pink-500 transform -translate-x-1/2 md:block hidden" />
                 <motion.div
-                    className="absolute top-10 md:top-28 left-[90%] md:left-1/2 w-1 rounded-full"
-                    style={{
-                        y: scrollY,
-                        height: "10%",
-                        background: "linear-gradient(180deg, #06B6D4 0%, #3B82F6 100%)",
-                        boxShadow: '0px 0px 15px 5px rgba(6, 182, 212, 0.4), 0px 0px 30px 10px rgba(59, 130, 246, 0.3)',
-                        clipPath: 'polygon(100% 0%, 100% 100%, 0% 100%)',
-                    }}
-                    transition={{
-                        duration: 1.5,
-                        ease: 'easeInOut',
-                        delay: 0.2,
-                        y: {
-                            duration: 0.5,
-                            ease: 'easeInOut',
-                        },
-                    }}
+                    className="absolute left-1/2 top-0 bottom-0 w-1 bg-purple-500 transform -translate-x-1/2 origin-top md:block hidden"
+                    style={{ scaleY, opacity: useTransform(scaleY, [0, 0.9], [0, 1]) }}
                 />
+                <motion.div
+                    className="absolute left-1/2 w-6 h-6 bg-purple-500 rounded-full transform -translate-x-1/2 z-10 md:block hidden"
+                    style={{ y: useTransform(scrollYProgress, [0, 1], ['0%', 'calc(100% - 24px)']) }}
+                >
+                    <motion.div
+                        className="w-full h-full rounded-full bg-purple-300"
+                        animate={{ scale: [1, 1.5, 1] }}
+                        transition={{ duration: 1.5, repeat: Infinity }}
+                    />
+                </motion.div>
 
             </motion.div>
             {/* Scroll Svg */}

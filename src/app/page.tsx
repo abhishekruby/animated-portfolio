@@ -4,7 +4,7 @@ import React, { lazy, Suspense, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 import { cn } from "@app/lib/utils";
-import { useProfileData } from "@api/profile/get/profileDataApi";
+import { useProfileData } from "@/src/app/api/profile/post/profileDataApi";
 import TransitionProvider from "@components/transition-provider";
 import SquareBounceLoader from "@components/loader/square-bounce-loader";
 import HamsterWheelLoader from "@components/loader/hamster-wheel-loader";

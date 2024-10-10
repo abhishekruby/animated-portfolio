@@ -66,6 +66,7 @@ const fetchProfileData = async () => {
                 id
                 priority
                 name
+                icon
               }
               category {
                 id

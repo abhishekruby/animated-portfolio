@@ -6,34 +6,33 @@ import SkillCategory from './skill-category'
 import ScrollSvg from '../ui/scroll-svg'
 import DetailPopUp from './detail-popup'
 import SkillBox from './skill-box'
+import { useAppSelector } from '@store/hooks'
 
 
 interface SkillObject {
+  id: string
   name: string
-  level: number
-  category: string
+  progress: number
+  priority: number
+  category: {
+    id: number
+    name: string
+    priority: number
+  }
 }
 
-const skills: SkillObject[] = [
-  { name: "React", level: 90, category: "Frontend" },
-  { name: "TypeScript", level: 85, category: "Languages" },
-  { name: "Node.js", level: 80, category: "Backend" },
-  { name: "GraphQL", level: 75, category: "API" },
-  { name: "CSS/SASS", level: 85, category: "Frontend" },
-  { name: "Python", level: 70, category: "Languages" },
-  { name: "Docker", level: 65, category: "DevOps" },
-  { name: "AWS", level: 60, category: "Cloud" },
-  { name: "MongoDB", level: 75, category: "Database" },
-  { name: "Redux", level: 80, category: "Frontend" },
-]
 
-const categories = Array.from(new Set(skills.map(skill => skill.category)))
 function Skill() {
-  const [selectedSkill, setSelectedSkill] = useState<SkillObject | null>(null)
+  const [selectedSkill, setSelectedSkill] = useState<any | null>(null)
   const [hoveredCategory, setHoveredCategory] = useState<string | null>(null)
 
+
+  const profileData = useAppSelector((state: any) => state.data?.profileData?.data);
+  const { skills } = profileData
+
+  const categories: string[] = Array.from(new Set(skills.map((skill: SkillObject) => skill.category.name)))
   const filteredSkills = hoveredCategory
-    ? skills.filter(skill => skill.category === hoveredCategory)
+    ? skills.filter((skill: SkillObject) => skill.category.name === hoveredCategory)
     : skills
 
   return (

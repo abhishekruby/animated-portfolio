@@ -1,88 +1,104 @@
-"use client";
+"use client"
 
-import { motion } from 'framer-motion';
-import { Link } from 'react-scroll';
-import SocialIcon from "../common/social-icons";
-import { SparklesCore } from "../ui/sparkles";
+import { motion } from 'framer-motion'
+import { Link } from 'react-scroll'
+import SocialIcon from "../common/social-icons"
+import { SparklesCore } from "../ui/sparkles"
 
-export default function Component() {
+export default function Footer() {
   const links = [
     { id: "home", title: "Home" },
     { id: "about", title: "About" },
-    { id: "project", title: "Projects" },
-    { id: "contribution", title: "Contribution" },
+    { id: "projects", title: "Projects" },
     { id: "contact", title: "Contact" },
-  ];
+  ]
 
   return (
     <motion.footer
-      initial={{ opacity: 0, y: 100 }}
+      initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: 0.1 }}
-      className="bg-slate-800 py-12 text-zinc-200 bg-opacity-50 rounded-tl-xl rounded-tr-xl relative sm:px-12 md:px-20 lg:px-40 xl:px-48 overflow-hidden"
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="bg-gradient-to-b from-slate-800 to-slate-900 text-zinc-200 relative overflow-hidden"
     >
-      <SparklesCore className="absolute w-full h-full left-0 top-0 rounded-tl-xl rounded-tr-xl" />
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-        className="container mx-auto flex flex-col items-center justify-between gap-8 md:flex-row relative z-20 sm:gap-12 md:gap-16 lg:gap-20 xl:gap-24"
-      >
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, ease: 'easeInOut', delay: 0.4 }}
-          className="flex flex-col items-center gap-2 md:items-start sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5"
-        >
-          <Link
-            to="home"
-            smooth={true}
-            duration={500}
-            offset={-100}
-            spy={true}
-            activeClass="active bg-slate-200 text-neutral-900"
-            className="flex gap-1 md:gap-2 items-center justify-center rounded-lg p-2 text-neutral-200 hover:bg-slate-200 hover:bg-opacity-60 hover:text-slate-900"
+      <div className="absolute inset-0 z-0">
+        <SparklesCore
+          id="tsparticles"
+          background="transparent"
+          minSize={0.6}
+          maxSize={1.4}
+          particleDensity={100}
+          className="w-full h-full"
+          particleColor="#ffffff"
+        />
+      </div>
+      <div className="container mx-auto px-6 py-12 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 items-start">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="flex flex-col items-center md:items-start"
           >
-            <MountainIcon className="h-5 w-5 md:h-6 md:w-6" />
-            <span className="text-xl md:text-2xl font-bold">Abhishek Ruby</span>
-          </Link>
-          <p className="text-sm md:text-base font-semibold text-cyan-500">&copy; 2024 All rights reserved.</p>
-        </motion.div>
-        <motion.nav
-          initial={{ opacity: 0, scale: 0 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, ease: 'easeInOut', delay: 0.4 }}
-          className="flex flex-col items-center justify-center gap-4 md:flex-row sm:w-1/2 md:w-2/3 lg:w-3/4 xl:w-4/5"
-        >
-          {links.map((link,index) => (
             <Link
-              key={index}
-              to={link.id}
+              to="home"
               smooth={true}
               duration={500}
               offset={-100}
               spy={true}
-              activeClass="active underline"
-              className="text-base md:text-lg text-zinc-300 font-medium hover:underline"
+              className="flex items-center space-x-2 text-2xl font-bold text-white hover:text-cyan-400 transition-colors duration-300"
             >
-              {link.title}
+              <MountainIcon className="h-8 w-8" />
+              <span>Abhishek Ruby</span>
             </Link>
-          ))}
-        </motion.nav>
+            <p className="mt-2 text-sm text-zinc-400">&copy; 2024 All rights reserved.</p>
+          </motion.div>
+          <motion.nav
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="flex flex-col md:flex-row justify-around items-center space-y-4 md:space-y-0 md:my-auto"
+          >
+            {links.map((link, index) => (
+              <Link
+                key={link.id}
+                to={link.id}
+                smooth={true}
+                duration={500}
+                offset={-100}
+                spy={true}
+                activeClass="text-cyan-400"
+                className="cursor-pointer text-zinc-300 hover:text-white transition-colors duration-300"
+              >
+                {link.title}
+              </Link>
+            ))}
+          </motion.nav>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="flex flex-col items-center md:items-end"
+          >
+            <h3 className="text-lg font-semibold mb-4">Connect with me</h3>
+            <div className="flex space-x-4">
+              <SocialIcon className="w-9 h-9 text-zinc-400 hover:text-cyan-400 transition-colors duration-300" />
+            </div>
+          </motion.div>
+        </div>
         <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="flex items-center gap-4 whileInView-fade-in-up sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          className="mt-12 pt-8 border-t border-zinc-700 text-center text-sm text-zinc-500"
         >
-          <SocialIcon className={'w-10 h-10 md:w-12 md:h-12'} />
+          <p>Designed and built with passion by <span className='text-cyan-500'>Abhishek Ruby</span></p>
         </motion.div>
-      </motion.div>
+      </div>
     </motion.footer>
-  );
+  )
 }
 
-function MountainIcon(props: any) {
+function MountainIcon(props:any) {
   return (
     <svg
       {...props}
@@ -96,6 +112,5 @@ function MountainIcon(props: any) {
     >
       <path d="m8 3 4 8 5-5 5 15H2L8 3z" />
     </svg>
-  );
+  )
 }
-

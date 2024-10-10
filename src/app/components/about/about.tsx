@@ -5,6 +5,8 @@ import ProfileImage from './profile-image'
 import DetailBox from './detail-box'
 import HeadText from '../common/head-text'
 import ScrollSvg from '../ui/scroll-svg'
+import SquareBounceLoader from '../loader/square-bounce-loader';
+
 const Skill = lazy(() => import("../skill/skill"));
 const Journey = lazy(() => import("../journey/journey"));
 
@@ -55,12 +57,12 @@ function About() {
       </motion.div>
 
       {/* Skills */}
-      <Suspense fallback={<div>Loading Skills...</div>}>
+      <Suspense fallback={<SquareBounceLoader/>}>
         <Skill />
       </Suspense>
 
       {/* Journey */}
-      <Suspense fallback={<div>Loading Journey...</div>}>
+      <Suspense fallback={<SquareBounceLoader/>}>
         <Journey />
       </Suspense>
     </div>

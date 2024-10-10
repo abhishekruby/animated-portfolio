@@ -8,7 +8,7 @@ interface SkillCategoryProps {
 function SkillCategory({ categories, setHoveredCategory }: SkillCategoryProps) {
   return (
     <div className="flex flex-wrap justify-center gap-4 mb-12">
-      {categories.map(category => (
+      {categories.map((category: string) => (
         <motion.button
           key={category}
           onMouseEnter={() => setHoveredCategory(category)}

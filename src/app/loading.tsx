@@ -1,9 +1,10 @@
 "use client"
+
 import React from 'react'
-import SquareBounceLoader from "./components/loader/square-bounce-loader";
+import HamsterWheelLoader from './components/loader/hamster-wheel-loader';
 
 function Loading() {
-  return <SquareBounceLoader/>;
+  return <HamsterWheelLoader/>;
 }
 
 export default Loading;

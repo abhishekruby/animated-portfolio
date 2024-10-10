@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 
 const SquareBounceLoader = () => {
   return (
-    <div className="w-screen h-screen mx-auto relative bg-slate-900">
+    <div className="w-full h-full mx-auto relative bg-slate-900">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center flex flex-col items-center">
       <motion.div
         className="w-16 h-16 bg-cyan-500 rounded"

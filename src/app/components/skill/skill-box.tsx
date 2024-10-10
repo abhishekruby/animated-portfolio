@@ -5,9 +5,15 @@ import { motion, AnimatePresence } from 'framer-motion'
 
 
 interface SkillObject {
+  id: string
   name: string
-  level: number
-  category: string
+  progress: number
+  priority: number
+  category: {
+    id: number
+    name: string
+    priority: number
+  }
 }
 
 interface SkillBoxProps {
@@ -38,13 +44,13 @@ const SkillBox: React.FC<SkillBoxProps> = ({filteredSkills,setSelectedSkill}) =>
             <motion.div
               className="bg-gradient-to-r from-blue-500 to-purple-600 h-2.5 rounded-full"
               initial={{ width: 0 }}
-              animate={{ width: `${skill.level}%` }}
+              animate={{ width: `${skill.progress}%` }}
               transition={{ duration: 1, delay: 0.2 }}
             />
           </div>
           <div className="flex justify-between items-center">
-            <span className="text-sm text-gray-400">{skill.category}</span>
-            <span className="text-sm font-medium text-blue-400">{skill.level}%</span>
+            <span className="text-sm text-gray-400">{skill.category.name}</span>
+            <span className="text-sm font-medium text-blue-400">{skill.progress}%</span>
           </div>
         </motion.div>
       ))}

@@ -6,6 +6,7 @@ import HeadText from '../common/head-text';
 import ScrollSvg from '../ui/scroll-svg';
 import JourneyDetail from './journey-detail';
 import IconPointer from './icon-pointer';
+import { useAppSelector } from '../../store/hooks';
 
 function Journey() {
     const PathRef = useRef<HTMLDivElement>(null);
@@ -24,7 +25,7 @@ function Journey() {
             setPathRefHeight(PathRef.current.getBoundingClientRect().height);
         }
     }, [PathRef]);
-
+    const { experiences } = useAppSelector((state: any) => state.data?.profileData?.data);
     return (
         <motion.div
             initial={{ opacity: 0, y: 100 }}

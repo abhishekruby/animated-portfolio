@@ -5,24 +5,11 @@ import { AnimatePresence } from "framer-motion";
 import { motion } from "framer-motion";
 
 import CustomScrollbar from './ui/custom-scroll-bar';
-import HamsterWheelLoader from "@components/loader/hamster-wheel-loader";
-import { useProfileData } from '../api/profile/get/profileDataApi';
-import GlobalErrorPage from '../global-error';
 
 
 const TransitionProvider = ({ children }: { children: ReactNode }) => {
 
   const ScrollbarRef = useRef(null);
-
-  const { data, error, isLoading } = useProfileData()
-
-  if (isLoading) {
-    return <HamsterWheelLoader />
-  }
-
-  if (error) {
-    return <GlobalErrorPage error={error} />
-  }
 
   return (
     <AnimatePresence mode="wait">

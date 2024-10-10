@@ -24,7 +24,7 @@ export default function RootLayout({
       <body className={roboto.className + "bg-slate-900"} suppressHydrationWarning={true}>
         {/* <AnimatedCursor innerSize={20} color='6, 182, 212' /> */}
           <StoreProvider>
-          <TransitionProvider>{children}</TransitionProvider>
+          {children}
           </StoreProvider>
       </body>
     </html>
